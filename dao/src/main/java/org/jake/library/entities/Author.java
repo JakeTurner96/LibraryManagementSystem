@@ -2,11 +2,9 @@ package org.jake.library.entities;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Data
@@ -15,10 +13,11 @@ import java.util.Date;
 @Getter
 @Setter
 public class Author {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int authorID;
     private String name;
     private Date dob;
+    @OneToMany
+    private Set<Book> authorBooks;
 }

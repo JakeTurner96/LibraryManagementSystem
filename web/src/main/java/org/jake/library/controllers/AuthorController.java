@@ -16,11 +16,13 @@ public class AuthorController {
 
     private final AuthorService authorService;
 
-    @PostMapping(path = "/add/{name}")
-    public String addAuthor(@PathVariable String name, @PathVariable Date dob) {
+    @PostMapping("/add/{name}")
+    public String addAuthor(@PathVariable String name) {
+        Date date = new Date();
+
         Author author = new Author();
         author.setName(name);
-        author.setDob(dob);
+        author.setDob(date);
         authorService.addAuthor(author);
         return "Author added";
     }

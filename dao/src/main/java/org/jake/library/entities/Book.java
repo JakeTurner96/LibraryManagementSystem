@@ -2,10 +2,7 @@ package org.jake.library.entities;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Data
@@ -22,6 +19,8 @@ public class Book {
     private int pages;
     private int copies;
     private boolean available;
-    private int publisherID;
-    private int authorID;
+    @ManyToOne
+    private Author author;
+    @ManyToOne
+    private Publisher publisher;
 }

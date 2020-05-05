@@ -2,10 +2,8 @@ package org.jake.library.entities;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Data
@@ -21,5 +19,6 @@ public class Publisher {
     private String name;
     private String headquarters;
     private int yearFounded;
-
+    @OneToMany
+    private Set<Book> publishedBooks;
 }

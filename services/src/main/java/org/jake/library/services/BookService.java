@@ -22,6 +22,6 @@ public class BookService {
     }
 
     public boolean bookExists(Book book){
-        return bookRepository.existsById(book.getAuthorID());
+        return bookRepository.existsById(book.getAuthor().getAuthorID());
     }
 }
