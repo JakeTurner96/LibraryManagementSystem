@@ -1,20 +1,14 @@
 package org.jake.library.entities;
 
-import lombok.*;
+import lombok.Data;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 
 @Entity
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter
-@Setter
-public class Book {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int bookID;
-    private String title;
+public class Book extends NamedEntity {
+
     private float price;
     private int pages;
     private int copies;

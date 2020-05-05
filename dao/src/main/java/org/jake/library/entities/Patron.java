@@ -1,27 +1,22 @@
 package org.jake.library.entities;
 
-import lombok.*;
+import lombok.Data;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import java.util.Date;
-import java.util.Set;
+import java.util.List;
 
 @Entity
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter
-@Setter
-public class Patron {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int patronID;
-    private String name;
+public class Patron extends NamedEntity {
     private String email;
     private Date memberSince;
     private Date membershipExpires;
     private boolean patronType;
     @OneToMany
-    private Set<BookLoan> patronLoans;
+    @JoinColumn(name = "patron_id")
+    private List<BookLoan> loans;
 }

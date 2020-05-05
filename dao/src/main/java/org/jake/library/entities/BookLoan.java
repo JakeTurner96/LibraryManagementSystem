@@ -1,25 +1,19 @@
 package org.jake.library.entities;
 
-import lombok.*;
+import lombok.Data;
 
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter
-@Setter
-public class BookLoan {
+public class BookLoan extends BaseEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int loanID;
     private Date dateOut;
     private Date dateDue;
     @OneToOne
-    private Book loanedBook;
+    @JoinColumn(name = "book_id")
+    private Book book;
     @ManyToOne
     private Patron patron;
 }

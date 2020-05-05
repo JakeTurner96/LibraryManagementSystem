@@ -1,23 +1,19 @@
 package org.jake.library.entities;
 
-import lombok.*;
+import lombok.Data;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import java.util.Date;
-import java.util.Set;
+import java.util.List;
 
 @Entity
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter
-@Setter
-public class Author {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int authorID;
-    private String name;
+public class Author extends NamedEntity {
     private Date dob;
     @OneToMany
-    private Set<Book> authorBooks;
+    @JoinColumn(name = "author_id")
+    private List<Book> books;
 }

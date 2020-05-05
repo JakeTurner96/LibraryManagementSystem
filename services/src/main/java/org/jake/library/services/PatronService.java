@@ -24,7 +24,7 @@ public class PatronService {
     }
 
     public boolean patronExists(Patron patron){
-        return patronRepository.existsById(patron.getPatronID());
+        return patronRepository.existsById(patron.getId());
     }
 
 }

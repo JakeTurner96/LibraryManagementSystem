@@ -24,6 +24,6 @@ public class PublisherService {
     }
 
     public boolean publisherExists(Publisher publisher){
-        return publisherRepository.existsById(publisher.getPublisherID());
+        return publisherRepository.existsById(publisher.getId());
     }
 }
