@@ -1,13 +1,13 @@
-package apiServices;
+package org.jake.library.services;
 
-import entities.Book;
-import org.springframework.beans.factory.annotation.Autowired;
-import repositorys.BookRepository;
+import lombok.RequiredArgsConstructor;
+import org.jake.library.entities.Book;
+import org.jake.library.repositories.BookRepository;
 
+@RequiredArgsConstructor
 public class BookService {
 
-    @Autowired
-    private BookRepository bookRepository;
+    private final BookRepository bookRepository;
 
     public void addBook(Book book){
         bookRepository.save(book);

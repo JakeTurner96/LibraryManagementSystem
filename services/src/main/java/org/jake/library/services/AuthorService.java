@@ -1,15 +1,16 @@
-package apiServices;
+package org.jake.library.services;
 
-import entities.Author;
+import lombok.RequiredArgsConstructor;
+import org.jake.library.entities.Author;
+import org.jake.library.repositories.AuthorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import repositorys.AuthorRepository;
 
 @Service
+@RequiredArgsConstructor
 public class AuthorService {
 
-    @Autowired
-    private AuthorRepository authorRepository;
+    private final AuthorRepository authorRepository;
 
     public void addAuthor(Author author){
         authorRepository.save(author);

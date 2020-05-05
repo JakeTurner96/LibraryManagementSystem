@@ -1,15 +1,15 @@
-package apiServices;
+package org.jake.library.services;
 
-import entities.Publisher;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
+import org.jake.library.entities.Publisher;
+import org.jake.library.repositories.PublisherRepository;
 import org.springframework.stereotype.Service;
-import repositorys.PublisherRepository;
 
 @Service
+@RequiredArgsConstructor
 public class PublisherService {
 
-    @Autowired
-    private PublisherRepository publisherRepository;
+    private final PublisherRepository publisherRepository;
 
     public void addPublisher(Publisher publisher){
         publisherRepository.save(publisher);
