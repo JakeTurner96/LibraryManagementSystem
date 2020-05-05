@@ -1,15 +1,15 @@
-package apiServices;
+package org.jake.library.services;
 
-import entities.Patron;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
+import org.jake.library.entities.Patron;
+import org.jake.library.repositories.PatronRepository;
 import org.springframework.stereotype.Service;
-import repositorys.PatronRepository;
 
 @Service
+@RequiredArgsConstructor
 public class PatronService {
 
-    @Autowired
-    private PatronRepository patronRepository;
+    private final PatronRepository patronRepository;
 
     public void addPatron(Patron patron){
         patronRepository.save(patron);
