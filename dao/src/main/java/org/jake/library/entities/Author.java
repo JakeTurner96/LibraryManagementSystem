@@ -1,18 +1,28 @@
 package org.jake.library.entities;
 
-import lombok.Data;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import java.util.Date;
+import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.lang.NonNull;
+import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
 @Data
-public class Author extends NamedEntity {
-    private Date dob;
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+public class Author {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+    @NonNull
+    private String name;
+    @NonNull
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate dob;
     @OneToMany
     @JoinColumn(name = "author_id")
     private List<Book> books;

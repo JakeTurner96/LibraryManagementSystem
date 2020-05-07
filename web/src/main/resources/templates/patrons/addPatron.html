@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div align="center"><br>
+    <h1>Add Patron</h1>
+
+    <form action="/savePatron" title="Add patron">
+        <label for="name">Name:</label><br>
+        <input id="name" type="text"name="name"><br><br>
+
+        <label for="email">Email:</label><br>
+        <input id="email" type="email" name="email"><br><br>
+
+        <label for="memberSince">Member Since:</label><br>
+        <input id="memberSince" type="date" name="memberSince"><br><br>
+
+        <label for="membershipEnds">Membership Expires:</label><br>
+        <input id="membershipEnds" type="date"  name="membershipExpires"><br><br>
+
+        <label for="patron"></label>Patron Type:<br>
+        <select id="patron" name="patronType"><br><br>
+            <option value="PATRON">PATRON</option>
+            <option value="ADMIN">ADMIN</option>
+            <option value="LIBRARIAN">LIBRARIAN</option>
+        </select>
+
+
+        <input type="submit">
+    </form>
+</div>
+
+</body>
+</html>

@@ -6,6 +6,8 @@ import org.jake.library.repositories.AuthorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class AuthorService {
@@ -16,12 +18,16 @@ public class AuthorService {
         authorRepository.save(author);
     }
 
-    public void removeAuthor(Author author){
-        authorRepository.delete(author);
+    public void removeAuthor(int id){
+        authorRepository.deleteById(id);
     }
 
     public Author getAuthor(int id){
-        return authorRepository.findById(id).get();
+        return authorRepository.findById(id).orElse(null);
+    }
+
+    public List<Author> getAuthorList(){
+        return authorRepository.findAll();
     }
 
     public boolean authorExists(Author author){

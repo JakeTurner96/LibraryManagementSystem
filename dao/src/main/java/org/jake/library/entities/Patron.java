@@ -1,21 +1,42 @@
 package org.jake.library.entities;
 
-import lombok.Data;
+import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.lang.NonNull;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import java.util.Date;
+import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
 @Data
-public class Patron extends NamedEntity {
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+public class Patron {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+    @NonNull
+    private String name;
+    @NonNull
     private String email;
-    private Date memberSince;
-    private Date membershipExpires;
-    private boolean patronType;
+    @NonNull
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate memberSince;
+    @NonNull
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate membershipExpires;
+    public enum PatronType {
+        ADMIN,
+        PATRON,
+        LIBRARIAN
+    }
+    @NonNull
+    @Enumerated(EnumType.STRING)
+    private PatronType patronType;
     @OneToMany
     @JoinColumn(name = "patron_id")
     private List<BookLoan> loans;

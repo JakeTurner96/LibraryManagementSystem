@@ -1,17 +1,26 @@
 package org.jake.library.entities;
 
-import lombok.Data;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import lombok.*;
+import org.springframework.lang.NonNull;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
 @Data
-public class Publisher extends NamedEntity {
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+public class Publisher{
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+    @NonNull
+    private String name;
+    @NonNull
     private String headquarters;
+    @NonNull
     private int yearFounded;
     @OneToMany
     @JoinColumn(name = "publisher_id")

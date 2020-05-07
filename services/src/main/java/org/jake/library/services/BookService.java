@@ -5,6 +5,8 @@ import org.jake.library.entities.Book;
 import org.jake.library.repositories.BookRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class BookService {
@@ -21,6 +23,10 @@ public class BookService {
 
     public Book getBook(int id) {
         return bookRepository.findById(id).get();
+    }
+
+    public List<Book> getBookList(){
+        return bookRepository.findAll();
     }
 
     public boolean bookExists(Book book) {

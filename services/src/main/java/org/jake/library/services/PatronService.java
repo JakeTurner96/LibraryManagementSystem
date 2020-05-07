@@ -5,6 +5,8 @@ import org.jake.library.entities.Patron;
 import org.jake.library.repositories.PatronRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class PatronService {
@@ -15,8 +17,12 @@ public class PatronService {
         patronRepository.save(patron);
     }
 
-    public void removePatron(Patron patron){
-        patronRepository.delete(patron);
+    public List<Patron> getPatronList(){
+        return patronRepository.findAll();
+    }
+
+    public void removePatron(int id){
+        patronRepository.deleteById(id);
     }
 
     public Patron getPatron(int id){
