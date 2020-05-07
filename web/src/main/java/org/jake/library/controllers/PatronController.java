@@ -38,6 +38,7 @@ public class PatronController {
         return "redirect:/patronServices";
     }
 
+
     @RequestMapping("/deletePatron/{id}")
     public String deletePatron(@PathVariable(name = "id") int id) {
         patronService.removePatron(id);

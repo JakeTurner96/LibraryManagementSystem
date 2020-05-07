@@ -23,10 +23,8 @@ public class Patron {
     private String name;
     @NonNull
     private String email;
-    @NonNull
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate memberSince;
-    @NonNull
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate membershipExpires;
     public enum PatronType {

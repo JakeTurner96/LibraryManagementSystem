@@ -2,19 +2,12 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Book Services</title>
+    <title>Title</title>
 </head>
 <body>
-<div align="center" v>
-    <h1>Book Services</h1>
 
-    | <a href="/">Home</a> |
-    <a href="patronServices">Patron services</a> | <br><br>
-
-    <form action="/search">
-        <input type="text" name="keyword">
-        <input type="submit" value="Search">
-    </form>
+<div align="center">
+    <h1>Book Search</h1>
 
     <table border="1" cellpadding="5"><br>
         <thead>
@@ -25,25 +18,25 @@
             <th>Available</th>
             <th>Copies</th>
             <th>Price</th>
+            <th>Action</th>
         </tr>
         </thead>
-
         <tbody>
-        <tr th:each="book : ${books}">
+        <tr th:each="book : ${bookList}">
             <td th:text="${book.id}"></td>
             <td th:text="${book.name}"></td>
             <td th:text="${book.pages}"></td>
             <td th:text="${book.available}"></td>
             <td th:text="${book.copies}"></td>
             <td th:text="${book.price}"></td>
+            <td>
+                <a th:href="@{'/loanBook/' +  ${book.id}}">Loan</a>
+
+            </td>
         </tr>
         </tbody>
-    </table><br>
-
-    | <a href="/addAuthor">Add Author</a> |
-    <a href="/addPublisher">Add Publisher</a> |
-    <a href="/addBook">Add Book</a> | <br>
-
+    </table>
+    <br>
 </div>
 </body>
 </html>

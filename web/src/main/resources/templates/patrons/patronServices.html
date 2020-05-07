@@ -20,7 +20,6 @@
                 <th>Member Since</th>
                 <th>Membership Expires</th>
                 <th>Patron Type</th>
-                <th>Edit</th>
             </tr>
         </thead>
 
@@ -33,7 +32,6 @@
                 <td th:text="${patron.membershipExpires}"></td>
                 <td th:text="${patron.patronType}"></td>
                 <td>
-<!--                    <a th:href="@{'/editPatron/' + ${patron.id}}">Update</a>-->
                     <a th:href="@{'/deletePatron/' + ${patron.id}}">Delete</a>
                 </td>
             </tr>

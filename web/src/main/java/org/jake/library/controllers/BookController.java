@@ -2,16 +2,20 @@ package org.jake.library.controllers;
 
 import org.jake.library.entities.Author;
 import org.jake.library.entities.Book;
+import org.jake.library.entities.BookLoan;
 import org.jake.library.entities.Publisher;
-import org.jake.library.services.AuthorService;
-import org.jake.library.services.BookService;
-import org.jake.library.services.PublisherService;
+import org.jake.library.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -21,9 +25,12 @@ public class BookController {
     AuthorService authorService;
     @Autowired
     BookService bookService;
-
     @Autowired
     PublisherService publisherService;
+    @Autowired
+    BookLoanService bookLoanService;
+    @Autowired
+    PatronService patronService;
 
     @GetMapping("/bookServices")
     public String bookServices(Model model) {
@@ -65,4 +72,27 @@ public class BookController {
         return "redirect:/bookServices";
     }
 
+    @RequestMapping("/search")
+    public ModelAndView search(@RequestParam String keyword) {
+        List<Book> bookList = bookService.searchBook(keyword);
+        ModelAndView modelAndView = new ModelAndView("books/bookSearch");
+        modelAndView.addObject("bookList", bookList);
+        return modelAndView;
+    }
+
+    @RequestMapping("/loanBook/{id}")
+    public String loanBook(@PathVariable(name = "id") int id){
+        BookLoan bookLoan = new BookLoan();
+
+        bookLoan.setDateOut(LocalDate.now());
+        bookLoan.setDateDue(LocalDate.now().plusDays(7));
+        bookLoan.setBook(bookService.getBook(id));
+        bookLoan.setPatron(patronService.getPatron(1));
+
+
+        bookLoanService.addBookLoan(bookLoan);
+
+        return "redirect:/bookServices";
+
+    }
 }

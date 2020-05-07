@@ -1,7 +1,6 @@
 package org.jake.library.entities;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.lang.NonNull;
 
@@ -9,7 +8,11 @@ import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
+@Data
+@AllArgsConstructor
 @NoArgsConstructor
+@Getter
+@Setter
 public class BookLoan{
 
     @Id

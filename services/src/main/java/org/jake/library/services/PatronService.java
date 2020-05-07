@@ -13,23 +13,23 @@ public class PatronService {
 
     private final PatronRepository patronRepository;
 
-    public void addPatron(Patron patron){
+    public void addPatron(Patron patron) {
         patronRepository.save(patron);
     }
 
-    public List<Patron> getPatronList(){
-        return patronRepository.findAll();
-    }
-
-    public void removePatron(int id){
-        patronRepository.deleteById(id);
-    }
-
-    public Patron getPatron(int id){
+    public Patron getPatron(int id) {
         return patronRepository.findById(id).get();
     }
 
-    public boolean patronExists(Patron patron){
+    public List<Patron> getPatronList() {
+        return patronRepository.findAll();
+    }
+
+    public void removePatron(int id) {
+        patronRepository.deleteById(id);
+    }
+
+    public boolean patronExists(Patron patron) {
         return patronRepository.existsById(patron.getId());
     }
 

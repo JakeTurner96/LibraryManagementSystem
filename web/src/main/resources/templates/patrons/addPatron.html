@@ -9,7 +9,7 @@
 <div align="center"><br>
     <h1>Add Patron</h1>
 
-    <form action="/savePatron" title="Add patron">
+    <form action="/savePatron">
         <label for="name">Name:</label><br>
         <input id="name" type="text"name="name"><br><br>
 
@@ -23,14 +23,13 @@
         <input id="membershipEnds" type="date"  name="membershipExpires"><br><br>
 
         <label for="patron"></label>Patron Type:<br>
-        <select id="patron" name="patronType"><br><br>
+        <select id="patron" name="patronType">
             <option value="PATRON">PATRON</option>
             <option value="ADMIN">ADMIN</option>
             <option value="LIBRARIAN">LIBRARIAN</option>
-        </select>
+        </select><br><br>
 
-
-        <input type="submit">
+        <input type="submit" value="Save">
     </form>
 </div>
 

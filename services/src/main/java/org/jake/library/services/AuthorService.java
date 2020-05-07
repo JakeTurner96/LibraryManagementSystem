@@ -14,23 +14,23 @@ public class AuthorService {
 
     private final AuthorRepository authorRepository;
 
-    public void addAuthor(Author author){
+    public void addAuthor(Author author) {
         authorRepository.save(author);
     }
 
-    public void removeAuthor(int id){
-        authorRepository.deleteById(id);
-    }
-
-    public Author getAuthor(int id){
+    public Author getAuthor(int id) {
         return authorRepository.findById(id).orElse(null);
     }
 
-    public List<Author> getAuthorList(){
+    public List<Author> getAuthorList() {
         return authorRepository.findAll();
     }
 
-    public boolean authorExists(Author author){
+    public void removeAuthor(int id) {
+        authorRepository.deleteById(id);
+    }
+
+    public boolean authorExists(Author author) {
         return authorRepository.existsById(author.getId());
     }
 }

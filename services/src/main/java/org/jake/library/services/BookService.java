@@ -17,10 +17,6 @@ public class BookService {
         bookRepository.save(book);
     }
 
-    public void removeBook(Book book) {
-        bookRepository.delete(book);
-    }
-
     public Book getBook(int id) {
         return bookRepository.findById(id).get();
     }
@@ -29,7 +25,15 @@ public class BookService {
         return bookRepository.findAll();
     }
 
+    public void removeBook(Book book) {
+        bookRepository.delete(book);
+    }
+
     public boolean bookExists(Book book) {
         return bookRepository.existsById(book.getId());
+    }
+
+    public List<Book> searchBook(String keyword){
+        return bookRepository.bookSearch(keyword);
     }
 }
