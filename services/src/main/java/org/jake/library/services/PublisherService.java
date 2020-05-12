@@ -5,6 +5,8 @@ import org.jake.library.entities.Publisher;
 import org.jake.library.repositories.PublisherRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class PublisherService {
@@ -21,6 +23,10 @@ public class PublisherService {
 
     public Publisher getPublisher(int id){
         return publisherRepository.findById(id).get();
+    }
+
+    public List<Publisher> getPublisherList() {
+        return publisherRepository.findAll();
     }
 
     public boolean publisherExists(Publisher publisher){

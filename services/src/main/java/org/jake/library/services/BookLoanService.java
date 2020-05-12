@@ -1,9 +1,8 @@
 package org.jake.library.services;
 
 import lombok.RequiredArgsConstructor;
-import org.jake.library.entities.Author;
+import org.jake.library.entities.Book;
 import org.jake.library.entities.BookLoan;
-import org.jake.library.repositories.AuthorRepository;
 import org.jake.library.repositories.BookLoanRepository;
 import org.springframework.stereotype.Service;
 
@@ -16,25 +15,28 @@ public class BookLoanService {
 
     private final BookLoanRepository bookLoanRepository;
 
-    public void addBookLoan(BookLoan bookLoan){
+    public void addBookLoan(BookLoan bookLoan) {
         bookLoanRepository.save(bookLoan);
     }
 
-    public void removeBookLoan(int id){
+    public void removeBookLoan(int id) {
         bookLoanRepository.deleteById(id);
     }
 
-    public BookLoan getBookLoan(int id){
+    public BookLoan getBookLoan(int id) {
         return bookLoanRepository.findById(id).orElse(null);
     }
 
-    public List<BookLoan> getBookLoanList(){
+    public List<BookLoan> getBookLoanList() {
         return bookLoanRepository.findAll();
     }
 
-    public boolean bookLoanExists(BookLoan bookLoan){
+    public boolean bookLoanExists(BookLoan bookLoan) {
         return bookLoanRepository.existsById(bookLoan.getId());
-
-        bookLoanRepository.
     }
+
+    public List<BookLoan> searchBookLoan(Integer patronID){
+        return bookLoanRepository.bookLoanSearch(patronID);
+    }
+
 }

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Loans</title>
+</head>
+<body>
+<div align="center" v>
+    <h1>Book Loans</h1>
+
+    <a href="/">Home</a><br><br>
+
+    <form action="/bookLoanSearch">
+        <input type="text" name="patronID">
+        <input type="submit" value="Search">
+    </form>
+
+    <table border="1" cellpadding="5"><br>
+        <thead>
+        <tr>
+            <th>Loan ID</th>
+            <th>Date Out</th>
+            <th>Date Due</th>
+            <th>Book ID</th>
+            <th>Patron ID</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="bookLoan : ${bookLoanList}">
+            <td th:text="${bookLoan.id}"></td>
+            <td th:text="${bookLoan.dateOut}"></td>
+            <td th:text="${bookLoan.dateDue}"></td>
+            <td th:text="${bookLoan.book}"></td>
+            <td th:text="${bookLoan.patron}"></td>
+            <td>
+                <a>Return</a>
+            </td>
+        </tr>
+        </tbody>
+    </table><br>
+
+</div>
+</body>
+</html>

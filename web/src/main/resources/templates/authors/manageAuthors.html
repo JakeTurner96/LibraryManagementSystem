@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Manage Authors</title>
+</head>
+<body>
+<div align="center" v>
+    <h1>Author Search</h1>
+
+    <a href="/">Home</a><br><br>
+
+    <table border="1" cellpadding="5"><br>
+        <thead>
+        <tr>
+            <th>Author ID</th>
+            <th>Name</th>
+            <th>Date of Birth</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="author : ${authorList}">
+            <td th:text="${author.id}"></td>
+            <td th:text="${author.name}"></td>
+            <td th:text="${author.dob}"></td>
+            <td>
+                <a>Update</a>
+                <a th:href="@{'/deleteAuthor/' + ${author.id}}">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table><br>
+    <a href="addAuthor">Add Author</a>
+</div>
+</body>
+</html>
