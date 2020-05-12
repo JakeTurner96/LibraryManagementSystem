@@ -10,5 +10,5 @@ import java.util.List;
 public interface BookRepository extends JpaRepository<Book, Integer> {
 
     @Query(value = "SELECT * FROM BOOK WHERE NAME LIKE '%' || :keyword || '%'", nativeQuery = true)
-     List<Book> bookSearch(@Param("keyword") String keyword);
+    List<Book> bookSearch(@Param("keyword") String keyword);
 }

@@ -1,7 +1,6 @@
 package org.jake.library.services;
 
 import lombok.RequiredArgsConstructor;
-import org.jake.library.entities.Book;
 import org.jake.library.entities.BookLoan;
 import org.jake.library.repositories.BookLoanRepository;
 import org.springframework.stereotype.Service;
@@ -35,7 +34,7 @@ public class BookLoanService {
         return bookLoanRepository.existsById(bookLoan.getId());
     }
 
-    public List<BookLoan> searchBookLoan(Integer patronID){
+    public List<BookLoan> searchBookLoan(Integer patronID) {
         return bookLoanRepository.bookLoanSearch(patronID);
     }
 

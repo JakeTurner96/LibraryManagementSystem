@@ -33,13 +33,12 @@
                 <td th:text="${patron.patronType}"></td>
                 <td>
                     <a th:href="@{'/editPatron/' + ${patron.id}}" >Update</a>
-
                     <a th:href="@{'/deletePatron/' + ${patron.id}}">Delete</a>
                 </td>
             </tr>
         </tbody>
     </table><br>
-    <a href="add/patron">Add Patron</a>
+    <a href="addPatron">Add Patron</a>
 </div>
 </body>
 </html>

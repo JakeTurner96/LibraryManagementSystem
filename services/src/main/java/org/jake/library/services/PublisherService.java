@@ -13,15 +13,15 @@ public class PublisherService {
 
     private final PublisherRepository publisherRepository;
 
-    public void addPublisher(Publisher publisher){
+    public void addPublisher(Publisher publisher) {
         publisherRepository.save(publisher);
     }
 
-    public void removePublisher(Publisher publisher){
-        publisherRepository.delete(publisher);
+    public void removePublisher(int id) {
+        publisherRepository.deleteById(id);
     }
 
-    public Publisher getPublisher(int id){
+    public Publisher getPublisher(int id) {
         return publisherRepository.findById(id).get();
     }
 
@@ -29,7 +29,7 @@ public class PublisherService {
         return publisherRepository.findAll();
     }
 
-    public boolean publisherExists(Publisher publisher){
+    public boolean publisherExists(Publisher publisher) {
         return publisherRepository.existsById(publisher.getId());
     }
 }

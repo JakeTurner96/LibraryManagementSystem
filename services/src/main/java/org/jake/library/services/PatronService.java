@@ -3,7 +3,6 @@ package org.jake.library.services;
 import lombok.RequiredArgsConstructor;
 import org.jake.library.entities.Patron;
 import org.jake.library.repositories.PatronRepository;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

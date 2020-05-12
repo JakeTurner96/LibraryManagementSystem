@@ -25,7 +25,7 @@ public class PatronController {
         return "patrons/managePatrons";
     }
 
-    @GetMapping("/add/patron")
+    @GetMapping("/addPatron")
     public String addPatron() {
         return "patrons/addPatron";
     }

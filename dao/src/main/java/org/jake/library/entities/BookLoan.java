@@ -13,7 +13,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @Getter
 @Setter
-public class BookLoan{
+public class BookLoan {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

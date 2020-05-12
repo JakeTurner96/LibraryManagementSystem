@@ -28,12 +28,12 @@
             <td th:text="${publisher.headquarters}"></td>
             <td th:text="${publisher.yearFounded}"></td>
             <td>
-                <a th:href="@{'/editPatron/' + ${publisher.id}}" >Update</a>
+                <a th:href="@{'/deletePublisher/' + ${publisher.id}}" >Delete</a>
             </td>
         </tr>
         </tbody>
     </table><br>
-    <a href="add/patron">Add Patron</a>
+    <a href="addPublisher">Add Publisher</a>
 </div>
 </body>
 </html>

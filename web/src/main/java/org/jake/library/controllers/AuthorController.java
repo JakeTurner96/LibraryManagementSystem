@@ -1,7 +1,6 @@
 package org.jake.library.controllers;
 
 import org.jake.library.entities.Author;
-import org.jake.library.entities.Patron;
 import org.jake.library.services.AuthorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,7 +21,6 @@ public class AuthorController {
     public String manageAuthors(Model model) {
         List<Author> authorList = authorService.getAuthorList();
         model.addAttribute("authorList", authorList);
-
         return "authors/manageAuthors";
     }
 

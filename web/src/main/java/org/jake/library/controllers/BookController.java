@@ -1,6 +1,5 @@
 package org.jake.library.controllers;
 
-import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.jake.library.entities.*;
 import org.jake.library.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
 import java.time.LocalDate;
 import java.util.List;
 
@@ -39,7 +39,7 @@ public class BookController {
 
     @RequestMapping("/bookLoanSearch")
     public ModelAndView bookLoanSearch(@RequestParam Integer patronID) {
-        List<BookLoan> bookLoanList =  bookLoanService.searchBookLoan(patronID);
+        List<BookLoan> bookLoanList = bookLoanService.searchBookLoan(patronID);
         ModelAndView modelAndView = new ModelAndView("books/bookLoans");
         modelAndView.addObject("bookLoanList", bookLoanList);
         return modelAndView;
@@ -65,7 +65,7 @@ public class BookController {
     }
 
     @RequestMapping("/loanBook")
-    public String loanBook(@ModelAttribute("bookLoan") BookLoan bookLoan){
+    public String loanBook(@ModelAttribute("bookLoan") BookLoan bookLoan) {
         bookLoan.setDateOut(LocalDate.now());
         bookLoan.setDateDue(LocalDate.now().plusDays(7));
         bookLoanService.addBookLoan(bookLoan);
