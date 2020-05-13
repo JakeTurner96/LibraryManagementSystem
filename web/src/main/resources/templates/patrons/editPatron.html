@@ -1,28 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Edit Patron</title>
 </head>
 <body>
 
 <div align="center"><br>
-    <h1>Add Patron</h1>
+    <h1>Edit Patron</h1>
 
-    <a href="/">Home</a><br><br>
+    <form action="/updatePatron" method="put">
 
-    <form action="/savePatron" modelAttribute = "patron">
         <label for="name">Name:</label><br>
-        <input id="name" type="text"name="name"><br><br>
+        <input id="name" type="text"name="name" th:value="${patron.name}"><br><br>
 
         <label for="email">Email:</label><br>
-        <input id="email" type="email" name="email"><br><br>
+        <input id="email" type="email" name="email" th:value="${patron.email}"><br><br>
 
         <label for="memberSince">Member Since:</label><br>
-        <input id="memberSince" type="date" name="memberSince"><br><br>
+        <input id="memberSince" type="date" name="memberSince" th:value="${patron.memberSince}"><br><br>
 
         <label for="membershipEnds">Membership Expires:</label><br>
-        <input id="membershipEnds" type="date"  name="membershipExpires"><br><br>
+        <input id="membershipEnds" type="date"  name="membershipExpires" th:value="${patron.membershipExpires}"><br><br>
 
         <label for="patron"></label>Patron Type:<br>
         <select id="patron" name="patronType">

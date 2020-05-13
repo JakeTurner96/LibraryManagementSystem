@@ -8,8 +8,7 @@
 <div align="center">
     <h1>Patrons</h1>
 
-    | <a href="/">Home</a> |
-    <a href="bookServices">Book services</a> | <br>
+    <a href="/">Home</a><br><br>
 
     <table border="1" cellpadding="5"><br>
         <thead>
@@ -20,6 +19,7 @@
                 <th>Member Since</th>
                 <th>Membership Expires</th>
                 <th>Patron Type</th>
+                <th>Action</th>
             </tr>
         </thead>
 
@@ -32,12 +32,13 @@
                 <td th:text="${patron.membershipExpires}"></td>
                 <td th:text="${patron.patronType}"></td>
                 <td>
+                    <a th:href="@{'/editPatron/' + ${patron.id}}" >Update</a>
                     <a th:href="@{'/deletePatron/' + ${patron.id}}">Delete</a>
                 </td>
             </tr>
         </tbody>
     </table><br>
-    <a href="add/patron">Add Patron</a>
+    <a href="addPatron">Add Patron</a>
 </div>
 </body>
 </html>

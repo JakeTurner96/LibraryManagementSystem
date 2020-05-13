@@ -2,6 +2,7 @@ package org.jake.library.entities;
 
 import lombok.*;
 import org.springframework.lang.NonNull;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -11,7 +12,7 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Publisher{
+public class Publisher {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

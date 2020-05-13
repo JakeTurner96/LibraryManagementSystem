@@ -27,11 +27,13 @@ public class Patron {
     private LocalDate memberSince;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate membershipExpires;
+
     public enum PatronType {
         ADMIN,
         PATRON,
         LIBRARIAN
     }
+
     @NonNull
     @Enumerated(EnumType.STRING)
     private PatronType patronType;

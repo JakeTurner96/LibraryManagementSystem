@@ -2,12 +2,19 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Book Services</title>
 </head>
 <body>
-
-<div align="center">
+<div align="center" v>
     <h1>Book Search</h1>
+
+    <a href="/">Home</a><br><br>
+
+    <form action="/search">
+        <label for="search">Book title:</label>
+        <input id="search" type="text" name="keyword">
+        <input type="submit" value="Search">
+    </form>
 
     <table border="1" cellpadding="5"><br>
         <thead>
@@ -18,9 +25,9 @@
             <th>Available</th>
             <th>Copies</th>
             <th>Price</th>
-            <th>Action</th>
         </tr>
         </thead>
+
         <tbody>
         <tr th:each="book : ${bookList}">
             <td th:text="${book.id}"></td>
@@ -30,13 +37,12 @@
             <td th:text="${book.copies}"></td>
             <td th:text="${book.price}"></td>
             <td>
-                <a th:href="@{'/loanBook/' +  ${book.id}}">Loan</a>
-
+                <a th:href="@{'/loan/' +  ${book.id}}">Loan</a>
             </td>
         </tr>
         </tbody>
-    </table>
-    <br>
+    </table><br>
+
 </div>
 </body>
 </html>

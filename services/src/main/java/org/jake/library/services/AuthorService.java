@@ -3,7 +3,6 @@ package org.jake.library.services;
 import lombok.RequiredArgsConstructor;
 import org.jake.library.entities.Author;
 import org.jake.library.repositories.AuthorRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

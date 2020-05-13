@@ -13,15 +13,13 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @Getter
 @Setter
-public class BookLoan{
+public class BookLoan {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @NonNull
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dateOut;
-    @NonNull
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dateDue;
     @NonNull

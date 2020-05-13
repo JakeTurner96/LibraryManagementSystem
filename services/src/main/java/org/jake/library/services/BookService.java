@@ -21,7 +21,7 @@ public class BookService {
         return bookRepository.findById(id).get();
     }
 
-    public List<Book> getBookList(){
+    public List<Book> getBookList() {
         return bookRepository.findAll();
     }
 
@@ -33,7 +33,7 @@ public class BookService {
         return bookRepository.existsById(book.getId());
     }
 
-    public List<Book> searchBook(String keyword){
+    public List<Book> searchBook(String keyword) {
         return bookRepository.bookSearch(keyword);
     }
 }
