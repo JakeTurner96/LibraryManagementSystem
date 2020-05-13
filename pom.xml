@@ -4,10 +4,10 @@
 	<modelVersion>4.0.0</modelVersion>
 	<packaging>pom</packaging>
 	<modules>
-		<module>web</module>
 		<module>core</module>
 		<module>dao</module>
 		<module>services</module>
+		<module>web</module>
 	</modules>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
