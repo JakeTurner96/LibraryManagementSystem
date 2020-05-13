@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Book Services</title>
 </head>
 <body>
-<div align="center" v>
+<div align="center">
+    <h2>Welcome : <div sec:authentication="name"></div></h2>
     <h1>Book Search</h1>
 
     <a href="/">Home</a><br><br>

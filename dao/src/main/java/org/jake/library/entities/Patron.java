@@ -27,6 +27,7 @@ public class Patron {
     private LocalDate memberSince;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate membershipExpires;
+    private String password;
 
     public enum PatronType {
         ADMIN,
