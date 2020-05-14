@@ -3,8 +3,6 @@ insert into patron(name, email, member_since, membership_expires, patron_type,pa
 insert into patron(name, email, patron_type,password) values('System Admin', 'sysAdmin@gamil.com', 'ADMIN','123');
 insert into patron(name, email, patron_type,password) values('Jacob Black', 'jacobB123@hotmail.co.uk', 'LIBRARIAN','123');
 
-
-
 insert into author(name, dob) values('Stephen King', '1947-9-21');
 insert into author(name, dob) values('J.K.Rowling', '1965-7-31');
 
@@ -17,3 +15,7 @@ insert into book(available, copies, name, pages, price, author_id, publisher_id)
 
 insert into book(available, copies, name, pages, price, author_id, publisher_id) values(true, 2, 'The Shining', 447, 9.99, 1, 2);
 insert into book(available, copies, name, pages, price, author_id, publisher_id) values(true, 3, 'Carrie', 199, 8.99, 1, 2);
+
+insert into book_loan(date_due, date_out, book_id, patron_id) values('2020-06-05', '2020-05-13', 5, 1);
+insert into book_loan(date_due, date_out, book_id, patron_id) values('2020-06-05', '2020-05-13', 1, 1);
+insert into book_loan(date_due, date_out, book_id, patron_id) values('2020-06-05', '2020-05-13', 4, 2);

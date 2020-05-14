@@ -9,7 +9,12 @@
 <div align="center"><br>
     <h1>Edit Patron</h1>
 
-    <form action="/updatePatron" method="put">
+    <a href="/">Home</a><br><br>
+
+    <form action="/updatePatron" modelAttribute = "newPatron">
+
+        <label for="id">ID:</label><br>
+        <input readonly id="id" type="text"name="id" th:value="${patron.id}"><br><br>
 
         <label for="name">Name:</label><br>
         <input id="name" type="text"name="name" th:value="${patron.name}"><br><br>
@@ -30,7 +35,7 @@
             <option value="LIBRARIAN">LIBRARIAN</option>
         </select><br><br>
 
-        <input type="submit" value="Save">
+        <input type="submit" value="Update">
     </form>
 </div>
 

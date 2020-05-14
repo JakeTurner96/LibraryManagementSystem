@@ -49,4 +49,18 @@ public class PatronController {
         modelAndView.addObject("patron", patron);
         return modelAndView;
     }
+
+    @RequestMapping("/updatePatron")
+    public String updatePatron(@ModelAttribute("newPatron") Patron patron) {
+        Patron updatedPatron = patronService.getPatron(patron.getId());
+
+        updatedPatron.setName(patron.getName());
+        updatedPatron.setEmail(patron.getEmail());
+        updatedPatron.setMemberSince(patron.getMemberSince());
+        updatedPatron.setMembershipExpires(patron.getMembershipExpires());
+        updatedPatron.setPatronType(patron.getPatronType());
+
+        patronService.addPatron(updatedPatron);
+        return "redirect:/managePatrons";
+    }
 }

@@ -14,7 +14,6 @@ import java.time.LocalDate;
 @Getter
 @Setter
 public class BookLoan {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -24,7 +23,6 @@ public class BookLoan {
     private LocalDate dateDue;
     @NonNull
     @OneToOne
-    @JoinColumn(name = "book_id")
     private Book book;
     @NonNull
     @ManyToOne

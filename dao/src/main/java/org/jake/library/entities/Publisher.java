@@ -13,7 +13,6 @@ import java.util.List;
 @Getter
 @Setter
 public class Publisher {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;

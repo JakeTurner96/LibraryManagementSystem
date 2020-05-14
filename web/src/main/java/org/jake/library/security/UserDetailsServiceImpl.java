@@ -9,10 +9,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-/**
- * @author Soumen Karmakar
- * 13/05/2020
- */
 @Service
 @RequiredArgsConstructor
 public class UserDetailsServiceImpl implements UserDetailsService {
@@ -30,6 +26,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                 .password(patron.getPassword())
                 .roles(createRoles(patron.getPatronType())).build();
     }
+
 
     private String createRoles(Patron.PatronType patronType) {
         String role;

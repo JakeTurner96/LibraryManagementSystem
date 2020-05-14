@@ -1,5 +1,6 @@
 package org.jake.library.entities;
 
+import com.sun.istack.NotNull;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.lang.NonNull;
@@ -15,7 +16,6 @@ import java.util.List;
 @Getter
 @Setter
 public class Patron {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -27,6 +27,7 @@ public class Patron {
     private LocalDate memberSince;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate membershipExpires;
+    @NotNull
     private String password;
 
     public enum PatronType {

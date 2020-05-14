@@ -1,45 +1,42 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Book Loans</title>
+    <title>Manage Book Loans</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
-<div align="center" v>
-    <h1>Book Loans</h1>
+<div align="center">
+    <h1>Manage Book Loans</h1>
 
-    <a href="/">Home</a><br><br>
-
-    <form action="/bookLoanSearch">
-        <input type="text" name="patronID">
-        <input type="submit" value="Search">
-    </form>
+    <a href="/">Home</a><br>
 
     <table border="1" cellpadding="5"><br>
         <thead>
         <tr>
             <th>Loan ID</th>
+            <th>Book Title</th>
             <th>Date Out</th>
             <th>Date Due</th>
-            <th>Book ID</th>
             <th>Patron ID</th>
+            <th>Patron Name</th>
+            <th>Action</th>
         </tr>
         </thead>
 
         <tbody>
         <tr th:each="bookLoan : ${bookLoanList}">
             <td th:text="${bookLoan.id}"></td>
+            <td th:text="${bookLoan.book.getName()}"></td>
             <td th:text="${bookLoan.dateOut}"></td>
             <td th:text="${bookLoan.dateDue}"></td>
-            <td th:text="${bookLoan.book}"></td>
-            <td th:text="${bookLoan.patron}"></td>
+            <td th:text="${bookLoan.patron.getId()}"></td>
+            <td th:text="${bookLoan.patron.getName()}"></td>
             <td>
-                <a>Return</a>
+                <a th:href="@{'/returnBook/' + ${bookLoan.id}}">Return</a>
             </td>
         </tr>
         </tbody>
     </table><br>
-
 </div>
 </body>
 </html>

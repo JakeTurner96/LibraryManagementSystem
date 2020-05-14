@@ -11,7 +11,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class BookLoanService {
 
-
     private final BookLoanRepository bookLoanRepository;
 
     public void addBookLoan(BookLoan bookLoan) {
@@ -33,9 +32,4 @@ public class BookLoanService {
     public boolean bookLoanExists(BookLoan bookLoan) {
         return bookLoanRepository.existsById(bookLoan.getId());
     }
-
-    public List<BookLoan> searchBookLoan(Integer patronID) {
-        return bookLoanRepository.bookLoanSearch(patronID);
-    }
-
 }

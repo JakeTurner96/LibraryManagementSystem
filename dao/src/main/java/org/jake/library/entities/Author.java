@@ -15,7 +15,6 @@ import java.util.List;
 @Getter
 @Setter
 public class Author {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;

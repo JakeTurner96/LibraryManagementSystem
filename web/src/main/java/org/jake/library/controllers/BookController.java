@@ -19,11 +19,6 @@ public class BookController {
     @Autowired
     BookLoanService bookLoanService;
 
-    @GetMapping("/bookServices")
-    public String bookServices(Model model) {
-        return "books/bookServices";
-    }
-
     @GetMapping("/bookSearch")
     public String bookSearch() {
         return "books/bookSearch";
@@ -37,14 +32,6 @@ public class BookController {
         return modelAndView;
     }
 
-    @RequestMapping("/bookLoanSearch")
-    public ModelAndView bookLoanSearch(@RequestParam Integer patronID) {
-        List<BookLoan> bookLoanList = bookLoanService.searchBookLoan(patronID);
-        ModelAndView modelAndView = new ModelAndView("books/bookLoans");
-        modelAndView.addObject("bookLoanList", bookLoanList);
-        return modelAndView;
-    }
-
     @GetMapping("/addBook")
     public String addBook() {
         return "books/addBook";
@@ -53,7 +40,14 @@ public class BookController {
     @RequestMapping("/saveBook")
     public String saveBook(Book book) {
         bookService.addBook(book);
-        return "redirect:/bookServices";
+        return "redirect:/manageBooks";
+    }
+
+    @RequestMapping("/bookLoans")
+    public String bookLoans(Model model) {
+        List<BookLoan> bookLoanList = bookLoanService.getBookLoanList();
+        model.addAttribute("bookLoanList", bookLoanList);
+        return "books/bookLoans";
     }
 
     @RequestMapping("/loan/{bookID}")
@@ -72,9 +66,47 @@ public class BookController {
         return "redirect:/patronServices";
     }
 
-    @GetMapping("/bookLoans")
-    public String bookLoans() {
-        return "books/bookLoans";
+    @RequestMapping("/returnBook/{id}")
+    public String returnBook(@PathVariable(name = "id") int id) {
+        bookLoanService.removeBookLoan(id);
+        return "redirect:/bookLoans";
     }
 
+    @GetMapping("/manageBooks")
+    public String manageBooks(Model model) {
+        List<Book> bookList = bookService.getBookList();
+        model.addAttribute("bookList", bookList);
+        return "books/manageBooks";
+    }
+
+    @RequestMapping("/deleteBook/{id}")
+    public String deleteBook(@PathVariable(name = "id") int id) {
+        bookService.removeBook(id);
+        return "redirect:/manageBooks";
+    }
+
+    @RequestMapping("/editBook/{id}")
+    public ModelAndView editBook(@PathVariable(name = "id") int id) {
+        ModelAndView modelAndView = new ModelAndView("books/editBook");
+        Book book = bookService.getBook(id);
+        modelAndView.addObject("book", book);
+        return modelAndView;
+    }
+
+    @RequestMapping("/updateBook")
+    public String updatePatron(@ModelAttribute("newBook") Book book) {
+        Book updatedBook = bookService.getBook(book.getId());
+
+        updatedBook.setName(book.getName());
+        updatedBook.setPrice(book.getPrice());
+        updatedBook.setPages(book.getPages());
+        updatedBook.setCopies(book.getCopies());
+        updatedBook.setAvailable(book.isAvailable());
+        updatedBook.setAuthor(book.getAuthor());
+        updatedBook.setPublisher(book.getPublisher());
+
+        bookService.addBook(updatedBook);
+
+        return "redirect:/manageBooks";
+    }
 }

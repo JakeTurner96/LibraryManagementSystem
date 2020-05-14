@@ -25,8 +25,8 @@ public class BookService {
         return bookRepository.findAll();
     }
 
-    public void removeBook(Book book) {
-        bookRepository.delete(book);
+    public void removeBook(int id) {
+        bookRepository.deleteById(id);
     }
 
     public boolean bookExists(Book book) {

@@ -1,6 +1,5 @@
 package org.jake.library.controllers;
 
-import org.jake.library.entities.Author;
 import org.jake.library.entities.Publisher;
 import org.jake.library.services.PublisherService;
 import org.springframework.beans.factory.annotation.Autowired;

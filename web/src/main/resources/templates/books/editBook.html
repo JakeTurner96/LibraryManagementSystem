@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Book</title>
+</head>
+<body>
+
+<div align="center"><br>
+    <h1>Edit Book</h1>
+
+    <a href="/">Home</a><br><br>
+
+    <form action="/updateBook" modelAttribute = "newBook">
+
+        <label for="id">ID:</label><br>
+        <input readonly id="id" type="text"name="id" th:value="${book.id}"><br><br>
+
+        <label for="name">Title:</label><br>
+        <input id="name" type="text"name="name" th:value="${book.name}"><br><br>
+
+        <label for="price">Price:</label><br>
+        <input id="price" type="text" name="price" th:value="${book.price}"><br><br>
+
+        <label for="pages">Pages:</label><br>
+        <input id="pages" type="text" name="pages" th:value="${book.pages}"><br><br>
+
+        <label for="copies">Copies:</label><br>
+        <input id="copies" type="text"  name="copies" th:value="${book.copies}"><br><br>
+
+        <label for="available">Available:</label><br>
+        <input id="available" type="text"  name="available" th:value="${book.available}"><br><br>
+
+        <label for="authorID">Author ID:</label><br>
+        <input id="authorID" type="text"  name="author" th:value="${book.author.getId()}"><br><br>
+
+        <label for="publisherID">Publisher ID:</label><br>
+        <input id="publisherID" type="text"  name="publisher" th:value="${book.publisher.getId()}"><br><br>
+
+        <input type="submit" value="Update">
+    </form>
+</div>
+
+</body>
+</html>
