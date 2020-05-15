@@ -32,4 +32,8 @@ public class BookLoanService {
     public boolean bookLoanExists(BookLoan bookLoan) {
         return bookLoanRepository.existsById(bookLoan.getId());
     }
+
+    public List<BookLoan> getPatronBookLoans(int patronID) {
+        return bookLoanRepository.getPatronBookLoans(patronID);
+    }
 }

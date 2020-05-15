@@ -28,6 +28,7 @@
             <td th:text="${publisher.headquarters}"></td>
             <td th:text="${publisher.yearFounded}"></td>
             <td>
+                <a th:href="@{'/editPublisher/' + ${publisher.id}}">Update</a>
                 <a th:href="@{'/deletePublisher/' + ${publisher.id}}" >Delete</a>
             </td>
         </tr>

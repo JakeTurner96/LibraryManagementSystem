@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Publisher</title>
+</head>
+<body>
+
+<div align="center"><br>
+    <h1>Edit Publisher</h1>
+
+    <a href="/">Home</a><br><br>
+
+    <form action="/updatePublisher" modelAttribute = "newPublisher">
+
+        <label for="id">ID:</label><br>
+        <input readonly id="id" type="text"name="id" th:value="${publisher.id}"><br><br>
+
+        <label for="name">Name:</label><br>
+        <input id="name" type="text"name="name" th:value="${publisher.name}"><br><br>
+
+        <label for="hq">Headquarters:</label><br>
+        <input id="hq" type="text" name="headquarters" th:value="${publisher.headquarters}"><br><br>
+
+        <label for="yearFounded">Year Founded:</label><br>
+        <input id="yearFounded" type="text" name="yearFounded" th:value="${publisher.yearFounded}"><br><br>
+
+        <input type="submit" value="Update">
+    </form>
+</div>
+
+</body>
+</html>

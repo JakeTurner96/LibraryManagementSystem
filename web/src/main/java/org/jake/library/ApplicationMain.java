@@ -8,13 +8,13 @@ import org.springframework.context.event.EventListener;
 
 @SpringBootApplication
 @Log4j2
-public class ApplicationMain{
+public class ApplicationMain {
     public static void main(String[] args) {
         SpringApplication.run(ApplicationMain.class, args);
     }
 
     @EventListener(ApplicationStartedEvent.class)
-    public void onApplicationStart(){
+    public void onApplicationStart() {
         log.info("Library application started...");
     }
 }

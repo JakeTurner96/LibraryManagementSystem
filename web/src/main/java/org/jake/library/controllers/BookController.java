@@ -1,8 +1,11 @@
 package org.jake.library.controllers;
 
 import org.jake.library.entities.*;
+import org.jake.library.repositories.PatronRepository;
 import org.jake.library.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -10,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class BookController {
@@ -18,6 +22,9 @@ public class BookController {
     BookService bookService;
     @Autowired
     BookLoanService bookLoanService;
+
+    @Autowired
+    PatronRepository patronRepository;
 
     @GetMapping("/bookSearch")
     public String bookSearch() {
@@ -48,6 +55,17 @@ public class BookController {
         List<BookLoan> bookLoanList = bookLoanService.getBookLoanList();
         model.addAttribute("bookLoanList", bookLoanList);
         return "books/bookLoans";
+    }
+
+    @RequestMapping("/patronBookLoans")
+    public String patronBookLoans(Model model) {
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Optional<Patron> p = patronRepository.findByEmail(authentication.getName());
+
+        List<BookLoan> patronBookLoanList = bookLoanService.getPatronBookLoans(p.get().getId());
+        model.addAttribute("patronBookLoanList", patronBookLoanList);
+        return "books/patronBookLoans";
     }
 
     @RequestMapping("/loan/{bookID}")

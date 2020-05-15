@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>My Book Loans</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<div align="center">
+    <h1>Manage My Book Loans</h1>
+
+    <a href="/">Home</a><br>
+
+    <table border="1" cellpadding="5"><br>
+        <thead>
+        <tr>
+            <th>Loan ID</th>
+            <th>Book Title</th>
+            <th>Date Out</th>
+            <th>Date Due</th>
+            <th>Patron ID</th>
+            <th>Patron Name</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="bookLoan : ${patronBookLoanList}">
+            <td th:text="${bookLoan.id}"></td>
+            <td th:text="${bookLoan.book.getName()}"></td>
+            <td th:text="${bookLoan.dateOut}"></td>
+            <td th:text="${bookLoan.dateDue}"></td>
+            <td th:text="${bookLoan.patron.getId()}"></td>
+            <td th:text="${bookLoan.patron.getName()}"></td>
+            <td>
+                <a th:href="@{'/returnBook/' + ${bookLoan.id}}">Return</a>
+            </td>
+        </tr>
+        </tbody>
+    </table><br>
+</div>
+</body>
+</html>

@@ -6,8 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
@@ -38,6 +40,25 @@ public class AuthorController {
     @RequestMapping("/deleteAuthor/{id}")
     public String deleteAuthor(@PathVariable(name = "id") int id) {
         authorService.removeAuthor(id);
+        return "redirect:/manageAuthors";
+    }
+
+    @RequestMapping("/editAuthor/{id}")
+    public ModelAndView editAuthor(@PathVariable(name = "id") int id) {
+        ModelAndView modelAndView = new ModelAndView("authors/editAuthor");
+        Author author = authorService.getAuthor(id);
+        modelAndView.addObject("author", author);
+        return modelAndView;
+    }
+
+    @RequestMapping("/updateAuthor")
+    public String updatePatron(@ModelAttribute("newAuthor") Author author) {
+        Author updatedAuthor = authorService.getAuthor(author.getId());
+
+        updatedAuthor.setName(author.getName());
+        updatedAuthor.setDob(author.getDob());
+        authorService.addAuthor(updatedAuthor);
+
         return "redirect:/manageAuthors";
     }
 }

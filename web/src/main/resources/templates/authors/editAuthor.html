@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Author</title>
+</head>
+<body>
+
+<div align="center"><br>
+    <h1>Edit Author</h1>
+
+    <a href="/">Home</a><br><br>
+
+    <form action="/updateAuthor" modelAttribute = "newAuthor">
+        <label for="id">ID:</label><br>
+        <input readonly id="id" type="text"name="id" th:value="${author.id}"><br><br>
+
+        <label for="name">Name:</label><br>
+        <input id="name" type="text"name="name" th:value="${author.name}"><br><br>
+
+        <label for="dob">Date of Birth:</label><br>
+        <input id="dob" type="date" name="dob" th:value="${author.dob}"><br><br>
+
+        <input type="submit" value="Update">
+    </form>
+</div>
+
+</body>
+</html>

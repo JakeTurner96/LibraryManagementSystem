@@ -19,14 +19,13 @@
             <th>Action</th>
         </tr>
         </thead>
-
         <tbody>
         <tr th:each="author : ${authorList}">
             <td th:text="${author.id}"></td>
             <td th:text="${author.name}"></td>
             <td th:text="${author.dob}"></td>
             <td>
-                <a>Update</a>
+                <a th:href="@{'/editAuthor/' + ${author.id}}">Update</a>
                 <a th:href="@{'/deleteAuthor/' + ${author.id}}">Delete</a>
             </td>
         </tr>

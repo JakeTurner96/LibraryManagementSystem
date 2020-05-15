@@ -14,8 +14,8 @@ import org.springframework.stereotype.Service;
 public class UserDetailsServiceImpl implements UserDetailsService {
 
     private final PatronRepository repository;
-    static final String ROLE_PATRON ="PATRON";
-    static final String ROLE_ADMIN ="ADMIN";
+    static final String ROLE_PATRON = "PATRON";
+    static final String ROLE_ADMIN = "ADMIN";
     static final String ROLE_LIBRARIAN = "LIBRARIAN";
 
     @Override
@@ -27,10 +27,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                 .roles(createRoles(patron.getPatronType())).build();
     }
 
-
     private String createRoles(Patron.PatronType patronType) {
         String role;
-        switch (patronType){
+        switch (patronType) {
             case PATRON:
                 role = ROLE_PATRON;
                 break;
