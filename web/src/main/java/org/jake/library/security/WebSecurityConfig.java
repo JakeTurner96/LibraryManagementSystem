@@ -28,7 +28,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.csrf().disable().authorizeRequests()
                 .antMatchers("/").permitAll()
-                .antMatchers("/patronServices", "/bookSearch", "/search").hasAnyRole(ROLE_PATRON, ROLE_ADMIN)
+                .antMatchers("/patronServices", "/bookSearch", "/search").hasAnyRole(ROLE_PATRON, ROLE_LIBRARIAN ,ROLE_ADMIN)
                 .antMatchers("/librarianServices", "/managePatrons").hasAnyRole(ROLE_LIBRARIAN, ROLE_ADMIN)
                 .antMatchers("/adminServices").hasAnyRole(ROLE_ADMIN)
                 .and().formLogin();

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
@@ -8,10 +8,28 @@
 
 <h1 align="center">Library Management System</h1><br>
 <div align="center">
-    | <a href="patronServices">Patron services</a> |
-    <a href="librarianServices">Librarian services</a> |
-    <a href="adminServices">Admin services</a> |
-    <a href="logout">Logout</a> |
+
+
+    <div align="center" sec:authorize="hasAnyRole('PATRON', 'ADMIN')">
+        | <a href="patronServices">Patron services</a> | <br>
+    </div>
+
+    <div align="center" sec:authorize="hasAnyRole('LIBRARIAN', 'ADMIN')">
+        | <a href="librarianServices">Librarian services</a> | <br>
+    </div>
+
+    <div align="center" sec:authorize="hasRole('ADMIN')">
+        | <a href="adminServices">Admin services</a> | <br>
+    </div>
+
+    <div align="center" sec:authorize="!isAuthenticated()">
+       | <a href="login">Login</a> | <br>
+    </div>
+
+    <div align="center" sec:authorize="isAuthenticated()">
+       | <a href="logout">Logout</a> | <br>
+    </div>
+
 </div>
 
 </body>

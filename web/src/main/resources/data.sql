@@ -1,7 +1,7 @@
 insert into patron(name, email, member_since, membership_expires, patron_type,password) values('Jake Turner', 'jaketurner810@gmail.com', '2019-5-8', '2021-5-8', 'PATRON','12345');
 insert into patron(name, email, member_since, membership_expires, patron_type,password) values('Hannah Tilbury', 'hannaht96@talktalk.net', '2020-11-3', '2025-11-3', 'PATRON','12345');
 insert into patron(name, email, patron_type,password) values('System Admin', 'sysAdmin@gamil.com', 'ADMIN','123');
-insert into patron(name, email, patron_type,password) values('Jacob Black', 'jacobB123@hotmail.co.uk', 'LIBRARIAN','123');
+insert into patron(name, email, patron_type,password) values('Librarian', 'librarian@gmail.com', 'LIBRARIAN','123');
 
 insert into author(name, dob) values('Stephen King', '1947-9-21');
 insert into author(name, dob) values('J.K.Rowling', '1965-7-31');

@@ -76,6 +76,22 @@ public class BookController {
         return modelAndView;
     }
 
+    @RequestMapping("/patronLoan/{id}")
+    public String patronLoan(@PathVariable(name = "id") int id) {
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Optional<Patron> p = patronRepository.findByEmail(authentication.getName());
+
+        BookLoan bookLoan = new BookLoan();
+        bookLoan.setPatron(p.get());
+        bookLoan.setBook(bookService.getBook(id));
+        bookLoan.setDateOut(LocalDate.now());
+        bookLoan.setDateDue(LocalDate.now().plusDays(7));
+
+        bookLoanService.addBookLoan(bookLoan);
+        return "redirect:/patronBookLoans";
+    }
+
     @RequestMapping("/loanBook")
     public String loanBook(@ModelAttribute("bookLoan") BookLoan bookLoan) {
         bookLoan.setDateOut(LocalDate.now());
@@ -86,6 +102,12 @@ public class BookController {
 
     @RequestMapping("/returnBook/{id}")
     public String returnBook(@PathVariable(name = "id") int id) {
+        bookLoanService.removeBookLoan(id);
+        return "redirect:/patronBookLoans";
+    }
+
+    @RequestMapping("/librarianBookReturn/{id}")
+    public String librarianBookReturn(@PathVariable(name = "id") int id) {
         bookLoanService.removeBookLoan(id);
         return "redirect:/bookLoans";
     }
