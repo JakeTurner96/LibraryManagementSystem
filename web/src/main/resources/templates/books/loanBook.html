@@ -12,11 +12,14 @@
     <a href="/">Home</a><br><br>
 
     <form action="/loanBook" modelAttribute = "bookLoan">
-        <label for="patronID">Patron ID:</label><br>
-        <input id="patronID" type="text" name="patron"><br><br>
+
+        <label for="patronID">Patron Name:</label><br>
+        <select id="patronID" type="text"name="patron"><br><br>
+            <option th:each="patron : ${patronList}" th:value="${patron.getId()}" th:text="${patron.getName()}"></option>
+        </select><br><br>
 
         <label for="bookID">Book ID:</label><br>
-        <input id="bookID" type="text" name="book" th:value="${book.id}"><br><br>
+        <input readonly id="bookID" type="text" name="book" th:value="${book.id}"><br><br>
 
         <input type="submit" value="Save">
     </form>

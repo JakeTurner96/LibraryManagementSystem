@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,9 +23,14 @@ public class BookController {
     BookService bookService;
     @Autowired
     BookLoanService bookLoanService;
-
+    @Autowired
+    PatronService patronService;
     @Autowired
     PatronRepository patronRepository;
+    @Autowired
+    AuthorService authorService;
+    @Autowired
+    PublisherService publisherService;
 
     @GetMapping("/bookSearch")
     public String bookSearch() {
@@ -40,8 +46,15 @@ public class BookController {
     }
 
     @GetMapping("/addBook")
-    public String addBook() {
-        return "books/addBook";
+    public ModelAndView addBook() {
+
+        List<Author> authorList = authorService.getAuthorList();
+        List<Publisher> publisherList = publisherService.getPublisherList();
+
+        ModelAndView modelAndView = new ModelAndView("books/addBook");
+        modelAndView.addObject("authorList", authorList);
+        modelAndView.addObject("publisherList", publisherList);
+        return modelAndView;
     }
 
     @RequestMapping("/saveBook")
@@ -70,9 +83,12 @@ public class BookController {
 
     @RequestMapping("/loan/{bookID}")
     public ModelAndView loan(@PathVariable(name = "bookID") int bookID) {
+        List<Patron> patronList = patronService.getPatronList();
+
         ModelAndView modelAndView = new ModelAndView("books/loanBook");
         Book book = bookService.getBook(bookID);
         modelAndView.addObject("book", book);
+        modelAndView.addObject("patronList", patronList);
         return modelAndView;
     }
 
@@ -97,7 +113,7 @@ public class BookController {
         bookLoan.setDateOut(LocalDate.now());
         bookLoan.setDateDue(LocalDate.now().plusDays(7));
         bookLoanService.addBookLoan(bookLoan);
-        return "redirect:/patronServices";
+        return "redirect:/bookLoans";
     }
 
     @RequestMapping("/returnBook/{id}")
@@ -127,9 +143,14 @@ public class BookController {
 
     @RequestMapping("/editBook/{id}")
     public ModelAndView editBook(@PathVariable(name = "id") int id) {
+        List<Author> authorList = authorService.getAuthorList();
+        List<Publisher> publisherList = publisherService.getPublisherList();
+
         ModelAndView modelAndView = new ModelAndView("books/editBook");
         Book book = bookService.getBook(id);
         modelAndView.addObject("book", book);
+        modelAndView.addObject("authorList", authorList);
+        modelAndView.addObject("publisherList", publisherList);
         return modelAndView;
     }
 
