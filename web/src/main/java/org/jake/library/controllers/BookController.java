@@ -1,32 +1,20 @@
 package org.jake.library.controllers;
 
 import org.jake.library.entities.*;
-import org.jake.library.repositories.PatronRepository;
 import org.jake.library.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 public class BookController {
 
     @Autowired
     BookService bookService;
-    @Autowired
-    BookLoanService bookLoanService;
-    @Autowired
-    PatronService patronService;
-    @Autowired
-    PatronRepository patronRepository;
     @Autowired
     AuthorService authorService;
     @Autowired
@@ -61,71 +49,6 @@ public class BookController {
     public String saveBook(Book book) {
         bookService.addBook(book);
         return "redirect:/manageBooks";
-    }
-
-    @RequestMapping("/bookLoans")
-    public String bookLoans(Model model) {
-        List<BookLoan> bookLoanList = bookLoanService.getBookLoanList();
-        model.addAttribute("bookLoanList", bookLoanList);
-        return "books/bookLoans";
-    }
-
-    @RequestMapping("/patronBookLoans")
-    public String patronBookLoans(Model model) {
-
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        Optional<Patron> p = patronRepository.findByEmail(authentication.getName());
-
-        List<BookLoan> patronBookLoanList = bookLoanService.getPatronBookLoans(p.get().getId());
-        model.addAttribute("patronBookLoanList", patronBookLoanList);
-        return "books/patronBookLoans";
-    }
-
-    @RequestMapping("/loan/{bookID}")
-    public ModelAndView loan(@PathVariable(name = "bookID") int bookID) {
-        List<Patron> patronList = patronService.getPatronList();
-
-        ModelAndView modelAndView = new ModelAndView("books/loanBook");
-        Book book = bookService.getBook(bookID);
-        modelAndView.addObject("book", book);
-        modelAndView.addObject("patronList", patronList);
-        return modelAndView;
-    }
-
-    @RequestMapping("/patronLoan/{id}")
-    public String patronLoan(@PathVariable(name = "id") int id) {
-
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        Optional<Patron> p = patronRepository.findByEmail(authentication.getName());
-
-        BookLoan bookLoan = new BookLoan();
-        bookLoan.setPatron(p.get());
-        bookLoan.setBook(bookService.getBook(id));
-        bookLoan.setDateOut(LocalDate.now());
-        bookLoan.setDateDue(LocalDate.now().plusDays(7));
-
-        bookLoanService.addBookLoan(bookLoan);
-        return "redirect:/patronBookLoans";
-    }
-
-    @RequestMapping("/loanBook")
-    public String loanBook(@ModelAttribute("bookLoan") BookLoan bookLoan) {
-        bookLoan.setDateOut(LocalDate.now());
-        bookLoan.setDateDue(LocalDate.now().plusDays(7));
-        bookLoanService.addBookLoan(bookLoan);
-        return "redirect:/bookLoans";
-    }
-
-    @RequestMapping("/returnBook/{id}")
-    public String returnBook(@PathVariable(name = "id") int id) {
-        bookLoanService.removeBookLoan(id);
-        return "redirect:/patronBookLoans";
-    }
-
-    @RequestMapping("/librarianBookReturn/{id}")
-    public String librarianBookReturn(@PathVariable(name = "id") int id) {
-        bookLoanService.removeBookLoan(id);
-        return "redirect:/bookLoans";
     }
 
     @GetMapping("/manageBooks")

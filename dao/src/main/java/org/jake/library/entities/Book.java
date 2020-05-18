@@ -25,10 +25,8 @@ public class Book {
     private int copies;
     @NonNull
     private boolean available;
-    @NonNull
     @ManyToOne
     private Author author;
-    @NonNull
     @ManyToOne
     private Publisher publisher;
 }

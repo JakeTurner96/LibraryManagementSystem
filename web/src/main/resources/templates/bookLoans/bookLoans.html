@@ -29,7 +29,7 @@
             <td th:text="${bookLoan.book.getName()}"></td>
             <td th:text="${bookLoan.dateOut}"></td>
             <td th:text="${bookLoan.dateDue}"></td>
-            <td th:text="${bookLoan.patron.getId()}"></td>
+            <td th:text="${bookLoan.patron.getId()}" ></td>
             <td th:text="${bookLoan.patron.getName()}"></td>
             <td>
                 <a th:href="@{'/librarianBookReturn/' + ${bookLoan.id}}">Return</a>

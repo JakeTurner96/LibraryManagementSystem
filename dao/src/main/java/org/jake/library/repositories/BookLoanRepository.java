@@ -11,4 +11,5 @@ public interface BookLoanRepository extends JpaRepository<BookLoan, Integer> {
 
     @Query(value = "SELECT * FROM BOOK_LOAN WHERE PATRON_ID = :patronID", nativeQuery = true)
     List<BookLoan> getPatronBookLoans(@Param("patronID") int patronID);
+
 }

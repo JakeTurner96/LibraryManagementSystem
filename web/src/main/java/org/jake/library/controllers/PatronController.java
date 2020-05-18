@@ -1,7 +1,10 @@
 package org.jake.library.controllers;
 
 import lombok.RequiredArgsConstructor;
+import org.jake.library.entities.BookLoan;
 import org.jake.library.entities.Patron;
+import org.jake.library.repositories.BookLoanRepository;
+import org.jake.library.services.BookLoanService;
 import org.jake.library.services.PatronService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +18,10 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PatronController {
 
+    @Autowired
+    private BookLoanRepository bookLoanRepository;
+    @Autowired
+    private BookLoanService bookLoanService;
     @Autowired
     private PatronService patronService;
 
@@ -38,7 +45,14 @@ public class PatronController {
 
     @RequestMapping("/deletePatron/{id}")
     public String deletePatron(@PathVariable(name = "id") int id) {
+
+        List<BookLoan> bookLoanList = bookLoanService.getPatronBookLoans(id);
+
+        for (BookLoan bookLoan : bookLoanList) {
+            bookLoanService.removeBookLoan(bookLoan.getId());
+        }
         patronService.removePatron(id);
+
         return "redirect:/managePatrons";
     }
 

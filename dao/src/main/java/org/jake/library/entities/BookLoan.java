@@ -2,7 +2,6 @@ package org.jake.library.entities;
 
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.lang.NonNull;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -21,10 +20,8 @@ public class BookLoan {
     private LocalDate dateOut;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dateDue;
-    @NonNull
     @OneToOne
     private Book book;
-    @NonNull
     @ManyToOne
     private Patron patron;
 }

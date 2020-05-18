@@ -36,4 +36,5 @@ public class BookLoanService {
     public List<BookLoan> getPatronBookLoans(int patronID) {
         return bookLoanRepository.getPatronBookLoans(patronID);
     }
+
 }
