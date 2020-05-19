@@ -4,32 +4,47 @@
     <meta charset="UTF-8">
     <title>Home</title>
 </head>
-<body>
+<body style="font-family:verdana">
 
-<h1 align="center">Library Management System</h1><br>
+<div align="center" sec:authorize="!isAuthenticated()">
+    <h1 align="center">Library Management System</h1>
+</div>
+
 <div align="center">
-
-
-    <div align="center" sec:authorize="hasAnyRole('PATRON', 'ADMIN')">
-        | <a href="patronServices">Patron services</a> | <br>
+    <div align="center" sec:authorize="hasRole('PATRON')">
+        <h1 align="center">Patron Services</h1>
+        <a>Welcome:</a>
+        <a sec:authentication="name"></a><br><br>
+        | <a href="bookSearch">Book Search</a>
+        | <a href="patronBookLoans">My Book Loans</a> | <br><br>
     </div>
 
-    <div align="center" sec:authorize="hasAnyRole('LIBRARIAN', 'ADMIN')">
-        | <a href="librarianServices">Librarian services</a> | <br>
+    <div align="center" sec:authorize="hasRole('LIBRARIAN')">
+        <h1 align="center">Librarian Services</h1>
+        <a>Welcome:</a>
+        <a sec:authentication="name"></a><br><br>
+        | <a href="managePatrons">Manage Patrons</a> |
+        <a href="bookLoans">Manage Book Loans</a> |
+        <a href="bookSearch">Book Search</a> | <br><br>
     </div>
 
     <div align="center" sec:authorize="hasRole('ADMIN')">
-        | <a href="adminServices">Admin services</a> | <br>
+        <h1 align="center">Admin Services</h1>
+        <a>Welcome:</a>
+        <a sec:authentication="name"></a><br><br>
+        | <a href="managePatrons">Manage Users</a> |
+        <a href="/manageBooks">Manage Books</a> |
+        <a href="/manageAuthors">Manage Authors</a> |
+        <a href="/managePublishers">Manage Publishers</a> | <br><br>
     </div>
 
     <div align="center" sec:authorize="!isAuthenticated()">
-       | <a href="login">Login</a> | <br>
+        <a href="login">Login</a>
     </div>
 
     <div align="center" sec:authorize="isAuthenticated()">
-       | <a href="logout">Logout</a> | <br>
+        <a href="logout">Logout</a>
     </div>
-
 </div>
 
 </body>

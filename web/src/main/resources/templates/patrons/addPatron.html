@@ -4,16 +4,16 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
-<body>
+<body style="font-family:verdana">
 
-<div align="center"><br>
+<div align="center">
     <h1>Add Patron</h1>
 
     <a href="/">Home</a><br><br>
 
-    <form action="/savePatron" modelAttribute = "patron">
+    <form action="/savePatron" modelAttribute="patron">
         <label for="name">Name:</label><br>
-        <input id="name" type="text"name="name"><br><br>
+        <input id="name" type="text" name="name"><br><br>
 
         <label for="email">Email:</label><br>
         <input id="email" type="email" name="email"><br><br>
@@ -22,10 +22,10 @@
         <input id="memberSince" type="date" name="memberSince"><br><br>
 
         <label for="membershipEnds">Membership Expires:</label><br>
-        <input id="membershipEnds" type="date"  name="membershipExpires"><br><br>
+        <input id="membershipEnds" type="date" name="membershipExpires"><br><br>
 
         <label for="password">Password:</label><br>
-        <input id="password" type="password"  name="password"><br><br>
+        <input id="password" type="password" name="password"><br><br>
 
         <label for="patron"></label>Patron Type:<br>
         <select id="patron" name="patronType">
@@ -36,7 +36,7 @@
 
         <input type="submit" value="Save">
     </form>
-</div>
 
+</div>
 </body>
 </html>
