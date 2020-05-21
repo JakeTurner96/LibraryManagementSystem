@@ -1,42 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link th:href="@{/main.css}" rel="stylesheet">
 </head>
 <body style="font-family:verdana">
 
-<div align="center">
-    <h1>Add Patron</h1>
+<div th:insert="navbar"></div>
 
-    <a href="/">Home</a><br><br>
+    <div class="formcontent">
 
-    <form action="/savePatron" modelAttribute="patron">
-        <label for="name">Name:</label><br>
-        <input id="name" type="text" name="name"><br><br>
+        <h1>Add Patron</h1>
 
-        <label for="email">Email:</label><br>
-        <input id="email" type="email" name="email"><br><br>
+        <form action="/savePatron" modelAttribute="patron">
+            <label for="name">Name:</label>
+            <input id="name" type="text" name="name" placeholder="Name">
 
-        <label for="memberSince">Member Since:</label><br>
-        <input id="memberSince" type="date" name="memberSince"><br><br>
+            <label for="email">Email:</label>
+            <input id="email" type="email" name="email" placeholder="Email address">
 
-        <label for="membershipEnds">Membership Expires:</label><br>
-        <input id="membershipEnds" type="date" name="membershipExpires"><br><br>
+            <label for="memberSince">Member Since:</label>
+            <input id="memberSince" type="date" name="memberSince">
 
-        <label for="password">Password:</label><br>
-        <input id="password" type="password" name="password"><br><br>
+            <label for="membershipEnds">Membership Expires:</label>
+            <input id="membershipEnds" type="date" name="membershipExpires">
 
-        <label for="patron"></label>Patron Type:<br>
-        <select id="patron" name="patronType">
-            <option value="PATRON">PATRON</option>
-            <option value="ADMIN">ADMIN</option>
-            <option value="LIBRARIAN">LIBRARIAN</option>
-        </select><br><br>
+            <label for="password">Password:</label>
+            <input id="password" type="password" name="password" placeholder="Password">
 
-        <input type="submit" value="Save">
-    </form>
+            <label for="patron">Patron Type:</label>
+            <select id="patron" name="patronType">
+                <option value="PATRON">PATRON</option>
+                <option value="ADMIN">ADMIN</option>
+                <option value="LIBRARIAN">LIBRARIAN</option>
+            </select>
 
-</div>
+            <input type="submit" value="Save">
+        </form>
+    </div>
 </body>
 </html>

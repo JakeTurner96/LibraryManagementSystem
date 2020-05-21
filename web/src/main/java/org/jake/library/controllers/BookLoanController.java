@@ -66,15 +66,18 @@ public class BookLoanController {
     public String patronLoan(@PathVariable(name = "id") int id) {
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        Optional<Patron> p = patronRepository.findByEmail(authentication.getName());
+        Optional<Patron> patron = patronRepository.findByEmail(authentication.getName());
 
         BookLoan bookLoan = new BookLoan();
-        bookLoan.setPatron(p.get());
+
+        bookLoan.setPatron(patron.get());
         bookLoan.setBook(bookService.getBook(id));
         bookLoan.setDateOut(LocalDate.now());
         bookLoan.setDateDue(LocalDate.now().plusDays(7));
 
         bookLoanService.addBookLoan(bookLoan);
+        bookService.decrementCopies(bookLoan.getBook());
+
         return "redirect:/patronBookLoans";
     }
 
@@ -82,19 +85,24 @@ public class BookLoanController {
     public String loanBook(@ModelAttribute("bookLoan") BookLoan bookLoan) {
         bookLoan.setDateOut(LocalDate.now());
         bookLoan.setDateDue(LocalDate.now().plusDays(7));
+
         bookLoanService.addBookLoan(bookLoan);
+        bookService.decrementCopies(bookLoan.getBook());
+
         return "redirect:/bookLoans";
     }
 
     @RequestMapping("/returnBook/{id}")
-    public String returnBook(@PathVariable(name = "id") int id) {
-        bookLoanService.removeBookLoan(id);
+    public String returnBook(@PathVariable(name = "id") int bookLoanID) {
+        bookService.incrementCopies(bookLoanService.getBookLoan(bookLoanID).getBook());
+        bookLoanService.removeBookLoan(bookLoanID);
         return "redirect:/patronBookLoans";
     }
 
     @RequestMapping("/librarianBookReturn/{id}")
-    public String librarianBookReturn(@PathVariable(name = "id") int id) {
-        bookLoanService.removeBookLoan(id);
+    public String librarianBookReturn(@PathVariable(name = "id") int bookLoanID) {
+        bookService.incrementCopies(bookLoanService.getBookLoan(bookLoanID).getBook());
+        bookLoanService.removeBookLoan(bookLoanID);
         return "redirect:/bookLoans";
     }
 }

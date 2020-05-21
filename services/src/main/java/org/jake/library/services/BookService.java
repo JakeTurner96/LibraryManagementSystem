@@ -36,4 +36,27 @@ public class BookService {
     public List<Book> searchBook(String keyword) {
         return bookRepository.bookSearch(keyword);
     }
+
+    public void decrementCopies(Book book){
+        if(book.getCopies() == 1){
+            book.setCopies(book.getCopies()-1);
+            book.setAvailable(false);
+            addBook(book);
+        }
+        else if(book.getCopies()> 0){
+            book.setCopies(book.getCopies()-1);
+            addBook(book);
+        }
+    }
+
+    public void incrementCopies(Book book){
+        if(!book.isAvailable()){
+            book.setCopies(book.getCopies()+1);
+            book.setAvailable(true);
+            addBook(book);
+        }else{
+            book.setCopies(book.getCopies()+1);
+            addBook(book);
+        }
+    }
 }

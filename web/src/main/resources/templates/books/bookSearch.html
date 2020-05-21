@@ -3,21 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <title>Book Search</title>
+    <link th:href="@{/main.css}" rel="stylesheet">
 </head>
 <body style="font-family:verdana">
+
+<div th:insert="navbar"></div>
+
 <div align="center">
 
     <h1>Book Search</h1>
 
-    <a href="/">Home</a><br><br>
+    <div class="searchForm">
+        <form action="/search">
+            <input type="text" name="keyword">
+            <input type="submit" value="Search">
+        </form>
+    </div>
 
-    <form action="/search">
-        <label for="search">Book title:</label>
-        <input id="search" type="text" name="keyword">
-        <input type="submit" value="Search">
-    </form>
-
-    <table border="1" cellpadding="5"><br>
+    <table id="contentTable">
         <thead>
         <tr>
             <th>Book ID</th>
@@ -43,17 +46,19 @@
             <td th:text="${book.copies}"></td>
             <td th:text="${book.price}"></td>
             <td>
-                <div sec:authorize="hasAnyRole('ADMIN', 'LIBRARIAN')">
-                    <a th:href="@{'/loan/' + ${book.id}}">Loan to</a>
-                </div>
+               <span th:if="${book.isAvailable()}">
+                    <div sec:authorize="hasAnyRole('ADMIN', 'LIBRARIAN')">
+                        <a th:href="@{'/loan/' + ${book.id}}">Loan to</a>
+                    </div>
 
-                <div sec:authorize="hasRole('PATRON')">
-                    <a th:href="@{'/patronLoan/' +  ${book.id}}">Loan</a>
-                </div>
+                    <div sec:authorize="hasRole('PATRON')">
+                        <a th:href="@{'/patronLoan/' +  ${book.id}}">Loan</a>
+                    </div>
+               </span>
             </td>
         </tr>
         </tbody>
-    </table><br>
+    </table>
 
 </div>
 </body>

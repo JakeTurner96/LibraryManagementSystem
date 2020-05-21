@@ -3,20 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link th:href="@{/main.css}" rel="stylesheet">
 </head>
-<body style="font-family:verdana">
+<body>
+<div th:insert="navbar"></div>
 
-<div align="center">
+<div class="formcontent">
     <h1>Add Author</h1>
 
-    <a href="/">Home</a><br><br>
-
     <form action="/saveAuthor">
-        <label for="name">Name:</label><br>
-        <input id="name" type="text" name="name"><br><br>
+        <label for="name">Name:</label>
+        <input id="name" type="text" name="name">
 
-        <label for="dob">Date of Birth:</label><br>
-        <input id="dob" type="date" name="dob"><br><br>
+        <label for="dob">Date of Birth:</label>
+        <input id="dob" type="date" name="dob">
 
         <input type="submit">
     </form>

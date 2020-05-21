@@ -3,25 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link th:href="@{/main.css}" rel="stylesheet">
 </head>
-<body style="font-family:verdana">
+<body>
 
-<div align="center">
+<div th:insert="navbar"></div>
+
+<div class="formcontent">
     <h1>Add Publisher</h1>
 
-    <a href="/">Home</a><br><br>
-
     <form action="/savePublisher">
-        <label for="hq">Headquarters:</label><br>
-        <input id="hq" type="text" name="headquarters"><br><br>
+        <label for="hq">Headquarters:</label>
+        <input id="hq" type="text" name="headquarters">
 
-        <label for="name">Name:</label><br>
-        <input id="name" type="text" name="name"><br><br>
+        <label for="name">Name:</label>
+        <input id="name" type="text" name="name">
 
-        <label for="yearFounded">Year Founded:</label><br>
-        <input id="yearFounded" type="number" name="yearFounded"><br><br>
+        <label for="yearFounded">Year Founded:</label>
+        <input id="yearFounded" type="number" name="yearFounded">
 
-        <input type="submit"><br>
+        <input type="submit">
     </form>
 </div>
 

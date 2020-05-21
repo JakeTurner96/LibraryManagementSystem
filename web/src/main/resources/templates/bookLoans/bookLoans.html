@@ -3,14 +3,16 @@
 <head>
     <title>Manage Book Loans</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link th:href="@{/main.css}" rel="stylesheet">
 </head>
 <body style="font-family:verdana">
+
+<div th:insert="navbar"></div>
+
 <div align="center">
     <h1>Manage Book Loans</h1>
 
-    <a href="/">Home</a><br>
-
-    <table border="1" cellpadding="5"><br>
+    <table border="1" cellpadding="5">
         <thead>
         <tr>
             <th>Loan ID</th>
@@ -29,14 +31,14 @@
             <td th:text="${bookLoan.book.getName()}"></td>
             <td th:text="${bookLoan.dateOut}"></td>
             <td th:text="${bookLoan.dateDue}"></td>
-            <td th:text="${bookLoan.patron.getId()}" ></td>
+            <td th:text="${bookLoan.patron.getId()}"></td>
             <td th:text="${bookLoan.patron.getName()}"></td>
             <td>
                 <a th:href="@{'/librarianBookReturn/' + ${bookLoan.id}}">Return</a>
             </td>
         </tr>
         </tbody>
-    </table><br>
+    </table>
 </div>
 </body>
 </html>

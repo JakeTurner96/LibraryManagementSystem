@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
+<body>
+<div class="navbar">
+    <div sec:authorize="hasRole('PATRON')">
+        <a href="/">Home</a>
+        <a href="/bookSearch">Book Search</a>
+        <a href="/patronBookLoans">My Book Loans</a>
+    </div>
+
+    <div sec:authorize="hasRole('LIBRARIAN')">
+        <a href="/">Home</a>
+        <a href="/managePatrons">Manage Patrons</a>
+        <a href="/bookLoans">Manage Book Loans</a>
+        <a href="/bookSearch">Book Search</a>
+    </div>
+
+    <div sec:authorize="hasRole('ADMIN')">
+        <a href="/">Home</a>
+        <a href="/managePatrons">Manage Users</a>
+        <a href="/manageBooks">Manage Books</a>
+        <a href="/manageAuthors">Manage Authors</a>
+        <a href="/managePublishers">Manage Publishers</a>
+    </div>
+
+    <div class="navright" sec:authorize="!isAuthenticated()">
+        <a href="login">Login</a>
+    </div>
+
+    <div class="navright" sec:authorize="isAuthenticated()">
+        <a href="logout">Logout</a>
+    </div>
+</div>
+</body>
+</html>

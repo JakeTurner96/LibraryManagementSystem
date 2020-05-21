@@ -16,6 +16,6 @@ insert into book(available, copies, name, pages, price, author_id, publisher_id)
 insert into book(available, copies, name, pages, price, author_id, publisher_id) values(true, 2, 'The Shining', 447, 9.99, 1, 2);
 insert into book(available, copies, name, pages, price, author_id, publisher_id) values(true, 3, 'Carrie', 199, 8.99, 1, 2);
 
-insert into book_loan(date_due, date_out, book_id, patron_id) values('2020-06-05', '2020-05-13', 5, 1);
-insert into book_loan(date_due, date_out, book_id, patron_id) values('2020-06-05', '2020-05-13', 1, 1);
-insert into book_loan(date_due, date_out, book_id, patron_id) values('2020-06-05', '2020-05-13', 4, 2);
+insert into book_loan(date_due, date_out, book_id, patron_id) values('2020-05-25', '2020-05-10', 5, 1);
+insert into book_loan(date_due, date_out, book_id, patron_id) values('2020-05-20', '2020-05-05', 1, 1);
+insert into book_loan(date_due, date_out, book_id, patron_id) values('2020-05-20', '2020-05-05', 4, 2);

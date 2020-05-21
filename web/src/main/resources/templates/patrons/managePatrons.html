@@ -1,16 +1,18 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <title>Manage Patrons</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link th:href="@{/main.css}" rel="stylesheet">
 </head>
 <body style="font-family:verdana">
+
+<div th:insert="navbar"></div>
+
 <div align="center">
     <h1>Manage Patrons</h1>
 
-    <a href="/">Home</a><br>
-
-    <table border="1" cellpadding="5"><br>
+    <table border="1" cellpadding="5">
         <thead>
             <tr>
                 <th>ID</th>
@@ -37,7 +39,7 @@
                 </td>
             </tr>
         </tbody>
-    </table><br>
+    </table>
     <a href="addPatron">Add Patron</a>
 </div>
 </body>

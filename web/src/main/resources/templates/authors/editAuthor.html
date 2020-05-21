@@ -3,23 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <title>Edit Author</title>
+    <link th:href="@{/main.css}" rel="stylesheet">
 </head>
-<body style="font-family:verdana">
+<body>
+<div th:insert="navbar"></div>
 
-<div align="center"><br>
+<div class="formcontent">
     <h1>Edit Author</h1>
 
-    <a href="/">Home</a><br><br>
-
     <form action="/updateAuthor" modelAttribute = "newAuthor">
-        <label for="id">ID:</label><br>
-        <input readonly id="id" type="text"name="id" th:value="${author.id}"><br><br>
+        <label for="id">ID:</label>
+        <input readonly id="id" type="text"name="id" th:value="${author.id}">
 
-        <label for="name">Name:</label><br>
-        <input id="name" type="text"name="name" th:value="${author.name}"><br><br>
+        <label for="name">Name:</label>
+        <input id="name" type="text"name="name" th:value="${author.name}">
 
-        <label for="dob">Date of Birth:</label><br>
-        <input id="dob" type="date" name="dob" th:value="${author.dob}"><br><br>
+        <label for="dob">Date of Birth:</label>
+        <input id="dob" type="date" name="dob" th:value="${author.dob}">
 
         <input type="submit" value="Update">
     </form>

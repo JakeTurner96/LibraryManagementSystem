@@ -1,50 +1,38 @@
 <!DOCTYPE html>
-<html xmlns:sec="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
+    <link th:href="@{/main.css}" rel="stylesheet">
 </head>
 <body style="font-family:verdana">
 
-<div align="center" sec:authorize="!isAuthenticated()">
-    <h1 align="center">Library Management System</h1>
-</div>
+<div th:insert="navbar"></div>
 
 <div align="center">
-    <div align="center" sec:authorize="hasRole('PATRON')">
+
+    <div align="center" sec:authorize="!isAuthenticated()">
+        <h1 align="center">Library Management System</h1>
+    </div>
+
+    <div class="userwelcome" sec:authorize="hasRole('PATRON')">
         <h1 align="center">Patron Services</h1>
         <a>Welcome:</a>
         <a sec:authentication="name"></a><br><br>
-        | <a href="bookSearch">Book Search</a>
-        | <a href="patronBookLoans">My Book Loans</a> | <br><br>
     </div>
 
-    <div align="center" sec:authorize="hasRole('LIBRARIAN')">
+    <div class="userwelcome" sec:authorize="hasRole('LIBRARIAN')">
         <h1 align="center">Librarian Services</h1>
         <a>Welcome:</a>
         <a sec:authentication="name"></a><br><br>
-        | <a href="managePatrons">Manage Patrons</a> |
-        <a href="bookLoans">Manage Book Loans</a> |
-        <a href="bookSearch">Book Search</a> | <br><br>
     </div>
 
-    <div align="center" sec:authorize="hasRole('ADMIN')">
+    <div class="userwelcome" sec:authorize="hasRole('ADMIN')">
         <h1 align="center">Admin Services</h1>
         <a>Welcome:</a>
         <a sec:authentication="name"></a><br><br>
-        | <a href="managePatrons">Manage Users</a> |
-        <a href="/manageBooks">Manage Books</a> |
-        <a href="/manageAuthors">Manage Authors</a> |
-        <a href="/managePublishers">Manage Publishers</a> | <br><br>
     </div>
 
-    <div align="center" sec:authorize="!isAuthenticated()">
-        <a href="login">Login</a>
-    </div>
-
-    <div align="center" sec:authorize="isAuthenticated()">
-        <a href="logout">Logout</a>
-    </div>
 </div>
 
 </body>

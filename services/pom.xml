@@ -12,6 +12,11 @@
     <artifactId>services</artifactId>
     <dependencies>
         <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-mail</artifactId>
+            <version>2.3.0.RELEASE</version>
+        </dependency>
+        <dependency>
             <groupId>Jake</groupId>
             <artifactId>dao</artifactId>
             <version>0.0.1-SNAPSHOT</version>

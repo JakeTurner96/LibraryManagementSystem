@@ -3,14 +3,16 @@
 <head>
     <title>Manage Publishers</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link th:href="@{/main.css}" rel="stylesheet">
 </head>
-<body style="font-family:verdana">
+<body>
+
+<div th:insert="navbar"></div>
+
 <div align="center">
     <h1>Manage Publishers</h1>
 
-    <a href="/">Home</a><br>
-
-    <table border="1" cellpadding="5"><br>
+    <table>
         <thead>
         <tr>
             <th>Publisher ID</th>
@@ -29,11 +31,11 @@
             <td th:text="${publisher.yearFounded}"></td>
             <td>
                 <a th:href="@{'/editPublisher/' + ${publisher.id}}">Update</a>
-                <a th:href="@{'/deletePublisher/' + ${publisher.id}}" >Delete</a>
+                <a th:href="@{'/deletePublisher/' + ${publisher.id}}">Delete</a>
             </td>
         </tr>
         </tbody>
-    </table><br>
+    </table>
     <a href="addPublisher">Add Publisher</a>
 </div>
 </body>

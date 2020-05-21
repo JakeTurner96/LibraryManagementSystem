@@ -3,13 +3,14 @@
 <head>
     <title>My Book Loans</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link th:href="@{/main.css}" rel="stylesheet">
 </head>
 <body style="font-family:verdana">
 
+<div th:insert="navbar"></div>
+
 <div align="center">
     <h1>My Book Loans</h1>
-
-    <a href="/">Home</a><br><br>
 
     <table border="1" cellpadding="5">
         <thead>
@@ -38,7 +39,6 @@
         </tr>
         </tbody>
     </table>
-    <br>
 </div>
 </body>
 </html>

@@ -3,23 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link th:href="@{/main.css}" rel="stylesheet">
 </head>
 <body style="font-family:verdana">
 
-<div align="center">
-    <h1>Loan Book</h1>
+<div th:insert="navbar"></div>
 
-    <a href="/">Home</a><br><br>
+<div class="formcontent">
+    <h1>Loan Book</h1>
 
     <form action="/loanBook" modelAttribute = "bookLoan">
 
-        <label for="patronID">Patron Name:</label><br>
-        <select id="patronID" type="text"name="patron"><br><br>
+        <label for="patronID">Patron Name:</label>
+        <select id="patronID" type="text"name="patron">
             <option th:each="patron : ${patronList}" th:value="${patron.getId()}" th:text="${patron.getName()}"></option>
-        </select><br><br>
+        </select>
 
-        <label for="bookID">Book ID:</label><br>
-        <input readonly id="bookID" type="text" name="book" th:value="${book.id}"><br><br>
+        <label for="bookID">Book ID:</label>
+        <input readonly id="bookID" type="text" name="book" th:value="${book.id}">
 
         <input type="submit" value="Save">
     </form>
