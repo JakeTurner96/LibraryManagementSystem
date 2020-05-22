@@ -12,6 +12,13 @@
 <div align="center">
     <h1>Manage Patrons</h1>
 
+    <div class="searchForm">
+        <form action="/patronSearch">
+            <input type="text" name="keyword" placeholder="Patron name">
+            <input type="submit" value="Search">
+        </form>
+    </div>
+
     <table border="1" cellpadding="5">
         <thead>
             <tr>
@@ -26,7 +33,7 @@
         </thead>
 
         <tbody>
-            <tr th:each="patron : ${patrons}">
+            <tr th:each="patron : ${patronList}">
                 <td th:text="${patron.id}"></td>
                 <td th:text="${patron.name}"></td>
                 <td th:text="${patron.email}"></td>

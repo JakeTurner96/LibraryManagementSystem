@@ -12,19 +12,19 @@
 <div class="formcontent">
     <h1>Edit Publisher</h1>
 
-    <form action="/updatePublisher" modelAttribute = "newPublisher">
+    <form action="/updatePublisher" modelAttribute="newPublisher">
 
         <label for="id">ID:</label>
-        <input readonly id="id" type="text"name="id" th:value="${publisher.id}">
+        <input readonly id="id" type="text" name="id" th:value="${publisher.id}">
 
         <label for="name">Name:</label>
-        <input id="name" type="text"name="name" th:value="${publisher.name}">
+        <input id="name" type="text" name="name" th:value="${publisher.name}" required="required">
 
         <label for="hq">Headquarters:</label>
-        <input id="hq" type="text" name="headquarters" th:value="${publisher.headquarters}">
+        <input id="hq" type="text" name="headquarters" th:value="${publisher.headquarters}" required="required">
 
         <label for="yearFounded">Year Founded:</label>
-        <input id="yearFounded" type="text" name="yearFounded" th:value="${publisher.yearFounded}">
+        <input id="yearFounded" type="text" name="yearFounded" th:value="${publisher.yearFounded}" required="required">
 
         <input type="submit" value="Update">
     </form>

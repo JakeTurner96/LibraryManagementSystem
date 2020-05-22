@@ -1,6 +1,7 @@
 package org.jake.library.controllers;
 
 import lombok.RequiredArgsConstructor;
+import org.jake.library.entities.Book;
 import org.jake.library.entities.BookLoan;
 import org.jake.library.entities.Patron;
 import org.jake.library.repositories.BookLoanRepository;
@@ -27,9 +28,17 @@ public class PatronController {
 
     @GetMapping("/managePatrons")
     public String patronServices(Model model) {
-        List<Patron> patronList = patronService.getPatronList();
-        model.addAttribute("patrons", patronList);
+//        List<Patron> patronList = patronService.getPatronList();
+//        model.addAttribute("patrons", patronList);
         return "patrons/managePatrons";
+    }
+
+    @RequestMapping("/patronSearch")
+    public ModelAndView searchPatron(@RequestParam String keyword) {
+        List<Patron> patronList = patronService.searchPatron(keyword);
+        ModelAndView modelAndView = new ModelAndView("patrons/managePatrons");
+        modelAndView.addObject("patronList", patronList);
+        return modelAndView;
     }
 
     @GetMapping("/addPatron")

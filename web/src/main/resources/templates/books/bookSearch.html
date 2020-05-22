@@ -14,8 +14,8 @@
     <h1>Book Search</h1>
 
     <div class="searchForm">
-        <form action="/search">
-            <input type="text" name="keyword">
+        <form action="/searchBook">
+            <input type="text" name="keyword" placeholder="Book title">
             <input type="submit" value="Search">
         </form>
     </div>
@@ -47,7 +47,8 @@
             <td th:text="${book.price}"></td>
             <td>
                <span th:if="${book.isAvailable()}">
-                    <div sec:authorize="hasAnyRole('ADMIN', 'LIBRARIAN')">
+
+                    <div sec:authorize="hasRole('LIBRARIAN')">
                         <a th:href="@{'/loan/' + ${book.id}}">Loan to</a>
                     </div>
 
@@ -55,11 +56,18 @@
                         <a th:href="@{'/patronLoan/' +  ${book.id}}">Loan</a>
                     </div>
                </span>
+
+                <div sec:authorize="hasRole('ADMIN')">
+                    <a th:href="@{'/editBook/' + ${book.id}}">Update</a>
+                    <a th:href="@{'/deleteBook/' + ${book.id}}">Delete</a>
+                </div>
             </td>
         </tr>
         </tbody>
     </table>
-
+    <div sec:authorize="hasRole('ADMIN')">
+        <a href="addBook">Add Book</a>
+    </div>
 </div>
 </body>
 </html>

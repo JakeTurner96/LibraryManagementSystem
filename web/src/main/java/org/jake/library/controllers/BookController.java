@@ -25,7 +25,7 @@ public class BookController {
         return "books/bookSearch";
     }
 
-    @RequestMapping("/search")
+    @RequestMapping("/searchBook")
     public ModelAndView search(@RequestParam String keyword) {
         List<Book> bookList = bookService.searchBook(keyword);
         ModelAndView modelAndView = new ModelAndView("books/bookSearch");
@@ -48,20 +48,20 @@ public class BookController {
     @RequestMapping("/saveBook")
     public String saveBook(Book book) {
         bookService.addBook(book);
-        return "redirect:/manageBooks";
+        return "redirect:/bookSearch";
     }
 
-    @GetMapping("/manageBooks")
-    public String manageBooks(Model model) {
-        List<Book> bookList = bookService.getBookList();
-        model.addAttribute("bookList", bookList);
-        return "books/manageBooks";
-    }
+//    @GetMapping("/manageBooks")
+//    public String manageBooks(Model model) {
+//        List<Book> bookList = bookService.getBookList();
+//        model.addAttribute("bookList", bookList);
+//        return "books/manageBooks";
+//    }
 
     @RequestMapping("/deleteBook/{id}")
     public String deleteBook(@PathVariable(name = "id") int id) {
         bookService.removeBook(id);
-        return "redirect:/manageBooks";
+        return "redirect:/bookSearch";
     }
 
     @RequestMapping("/editBook/{id}")
@@ -91,6 +91,6 @@ public class BookController {
 
         bookService.addBook(updatedBook);
 
-        return "redirect:/manageBooks";
+        return "redirect:/bookSearch";
     }
 }

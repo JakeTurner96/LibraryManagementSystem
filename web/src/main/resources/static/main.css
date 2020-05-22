@@ -94,7 +94,7 @@ input, select{
 .searchForm input[type=text]{
     padding: 10px;
     border: 1px solid grey;
-    width: auto;
+    width: 40%;
 }
 
 .searchForm input[type=submit]{

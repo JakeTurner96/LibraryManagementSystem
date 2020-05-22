@@ -1,5 +1,9 @@
-insert into patron(name, email, member_since, membership_expires, patron_type,password) values('Jake Turner', 'jaketurner810@gmail.com', '2019-5-8', '2021-5-8', 'PATRON','12345');
-insert into patron(name, email, member_since, membership_expires, patron_type,password) values('Hannah Tilbury', 'hannaht96@talktalk.net', '2020-11-3', '2025-11-3', 'PATRON','12345');
+insert into patron(name, email, member_since, membership_expires, patron_type,password) values('Jake Turner', 'jaketurner810@gmail.com', '2019-5-8', '2021-5-8', 'PATRON','123');
+insert into patron(name, email, member_since, membership_expires, patron_type,password) values('Hannah Tilbury', 'hannaht96@talktalk.net', '2020-11-3', '2025-11-3', 'PATRON','123');
+insert into patron(name, email, member_since, membership_expires, patron_type,password) values('Adam Robinson', 'adam97@hotmial.co.uk', '2018-2-5', '2025-2-5', 'PATRON','123');
+insert into patron(name, email, member_since, membership_expires, patron_type,password) values('Connor Notman', 'c_notman98@gmail.com', '2010-08-17', '2023-08-17', 'PATRON','123');
+insert into patron(name, email, member_since, membership_expires, patron_type,password) values('Mia Hardcastel', 'miaHardcastle123@hotmail.co.uk', '2020-2-20', '2025-2-20', 'PATRON','123');
+
 insert into patron(name, email, patron_type,password) values('System Admin', 'sysAdmin@gamil.com', 'ADMIN','123');
 insert into patron(name, email, patron_type,password) values('Librarian', 'librarian@gmail.com', 'LIBRARIAN','123');
 

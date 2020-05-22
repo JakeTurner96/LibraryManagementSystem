@@ -18,10 +18,10 @@
         <input readonly id="id" type="text" name="id" th:value="${patron.id}">
 
         <label for="name">Name:</label>
-        <input id="name" type="text" name="name" th:value="${patron.name}">
+        <input id="name" type="text" name="name" th:value="${patron.name}" required="required">
 
         <label for="email">Email:</label>
-        <input id="email" type="email" name="email" th:value="${patron.email}">
+        <input id="email" type="email" name="email" th:value="${patron.email}" required="required">
 
         <label for="memberSince">Member Since:</label>
         <input id="memberSince" type="date" name="memberSince" th:value="${patron.memberSince}">
@@ -29,7 +29,7 @@
         <label for="membershipEnds">Membership Expires:</label>
         <input id="membershipEnds" type="date" name="membershipExpires" th:value="${patron.membershipExpires}">
 
-        <label for="patron">Patron Type:</label>
+        <label for="patron" required="required">Patron Type:</label>
         <select id="patron" name="patronType">
             <option value="PATRON">PATRON</option>
             <option value="ADMIN">ADMIN</option>

@@ -9,35 +9,35 @@
 
 <div th:insert="navbar"></div>
 
-    <div class="formcontent">
+<div class="formcontent">
 
-        <h1>Add Patron</h1>
+    <h1>Add Patron</h1>
 
-        <form action="/savePatron" modelAttribute="patron">
-            <label for="name">Name:</label>
-            <input id="name" type="text" name="name" placeholder="Name">
+    <form action="/savePatron" modelAttribute="patron">
+        <label for="name">Name:</label>
+        <input id="name" type="text" name="name" placeholder="Name" required="required">
 
-            <label for="email">Email:</label>
-            <input id="email" type="email" name="email" placeholder="Email address">
+        <label for="email">Email:</label>
+        <input id="email" type="email" name="email" placeholder="Email address" required="required">
 
-            <label for="memberSince">Member Since:</label>
-            <input id="memberSince" type="date" name="memberSince">
+        <label for="memberSince">Member Since:</label>
+        <input id="memberSince" type="date" name="memberSince">
 
-            <label for="membershipEnds">Membership Expires:</label>
-            <input id="membershipEnds" type="date" name="membershipExpires">
+        <label for="membershipEnds">Membership Expires:</label>
+        <input id="membershipEnds" type="date" name="membershipExpires">
 
-            <label for="password">Password:</label>
-            <input id="password" type="password" name="password" placeholder="Password">
+        <label for="password">Password:</label>
+        <input id="password" type="password" name="password" placeholder="Password" required="required">
 
-            <label for="patron">Patron Type:</label>
-            <select id="patron" name="patronType">
-                <option value="PATRON">PATRON</option>
-                <option value="ADMIN">ADMIN</option>
-                <option value="LIBRARIAN">LIBRARIAN</option>
-            </select>
+        <label for="patron">Patron Type:</label>
+        <select id="patron" name="patronType" required="required">
+            <option value="PATRON">PATRON</option>
+            <option value="ADMIN">ADMIN</option>
+            <option value="LIBRARIAN">LIBRARIAN</option>
+        </select>
 
-            <input type="submit" value="Save">
-        </form>
-    </div>
+        <input type="submit" value="Save">
+    </form>
+</div>
 </body>
 </html>

@@ -33,4 +33,8 @@ public class PatronService {
         return patronRepository.existsById(patron.getId());
     }
 
+    public List<Patron> searchPatron(String keyword) {
+        return patronRepository.patronSearch(keyword);
+    }
+
 }

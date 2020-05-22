@@ -11,15 +11,15 @@
 <div class="formcontent">
     <h1>Edit Author</h1>
 
-    <form action="/updateAuthor" modelAttribute = "newAuthor">
+    <form action="/updateAuthor" modelAttribute="newAuthor">
         <label for="id">ID:</label>
-        <input readonly id="id" type="text"name="id" th:value="${author.id}">
+        <input readonly id="id" type="text" name="id" th:value="${author.id}">
 
         <label for="name">Name:</label>
-        <input id="name" type="text"name="name" th:value="${author.name}">
+        <input id="name" type="text" name="name" th:value="${author.name}" required="required">
 
         <label for="dob">Date of Birth:</label>
-        <input id="dob" type="date" name="dob" th:value="${author.dob}">
+        <input id="dob" type="date" name="dob" th:value="${author.dob}" required="required">
 
         <input type="submit" value="Update">
     </form>
