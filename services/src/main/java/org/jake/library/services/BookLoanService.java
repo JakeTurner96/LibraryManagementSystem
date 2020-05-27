@@ -37,4 +37,11 @@ public class BookLoanService {
         return bookLoanRepository.getPatronBookLoans(patronID);
     }
 
+    public List<BookLoan> getPatronOverdueBooks(int patronID) {
+        return bookLoanRepository.getPatronOverdueBooks(patronID);
+    }
+
+    public List<Integer> getOverduePatrons() {
+        return bookLoanRepository.getOverduePatrons();
+    }
 }

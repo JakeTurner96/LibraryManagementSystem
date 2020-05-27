@@ -27,7 +27,7 @@ public class AuthorController {
     }
 
     @GetMapping("/addAuthor")
-    public String addPatron() {
+    public String addAuthor() {
         return "authors/addAuthor";
     }
 

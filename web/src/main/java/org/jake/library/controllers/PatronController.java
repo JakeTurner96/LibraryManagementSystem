@@ -1,7 +1,6 @@
 package org.jake.library.controllers;
 
 import lombok.RequiredArgsConstructor;
-import org.jake.library.entities.Book;
 import org.jake.library.entities.BookLoan;
 import org.jake.library.entities.Patron;
 import org.jake.library.repositories.BookLoanRepository;
@@ -49,7 +48,7 @@ public class PatronController {
     @RequestMapping("/savePatron")
     public String savePatron(@ModelAttribute("patron") Patron patron) {
         patronService.addPatron(patron);
-        return "redirect:/managePatrons";
+        return "redirect:/patronSearch?keyword=" + patron.getName();
     }
 
     @RequestMapping("/deletePatron/{id}")
@@ -62,7 +61,7 @@ public class PatronController {
         }
         patronService.removePatron(id);
 
-        return "redirect:/managePatrons";
+        return "redirect:/patronSearch?keyword=";
     }
 
     @RequestMapping("/editPatron/{id}")
@@ -84,6 +83,6 @@ public class PatronController {
         updatedPatron.setPatronType(patron.getPatronType());
 
         patronService.addPatron(updatedPatron);
-        return "redirect:/managePatrons";
+        return "redirect:/patronSearch?keyword=" + updatedPatron.getName();
     }
 }

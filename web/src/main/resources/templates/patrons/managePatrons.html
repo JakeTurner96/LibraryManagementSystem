@@ -21,30 +21,32 @@
 
     <table border="1" cellpadding="5">
         <thead>
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Member Since</th>
-                <th>Membership Expires</th>
-                <th>Patron Type</th>
-                <th>Action</th>
-            </tr>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Member Since</th>
+            <th>Membership Expires</th>
+            <th>Patron Type</th>
+            <th>Action</th>
+        </tr>
         </thead>
 
         <tbody>
-            <tr th:each="patron : ${patronList}">
-                <td th:text="${patron.id}"></td>
-                <td th:text="${patron.name}"></td>
-                <td th:text="${patron.email}"></td>
-                <td th:text="${patron.memberSince}"></td>
-                <td th:text="${patron.membershipExpires}"></td>
-                <td th:text="${patron.patronType}"></td>
-                <td>
-                    <a th:href="@{'/editPatron/' + ${patron.id}}" >Update</a>
-                    <a th:href="@{'/deletePatron/' + ${patron.id}}">Delete</a>
-                </td>
-            </tr>
+        <tr th:each="patron : ${patronList}">
+            <td th:text="${patron.id}"></td>
+            <td th:text="${patron.name}"></td>
+            <td th:text="${patron.email}"></td>
+            <td th:text="${patron.memberSince}"></td>
+            <td th:text="${patron.membershipExpires}"></td>
+            <td th:text="${patron.patronType}"></td>
+            <td>
+                <a th:href="@{'/editPatron/' + ${patron.id}}">Update</a>
+
+                <a th:href="@{'/deletePatron/' + ${patron.id}}">Delete</a>
+
+            </td>
+        </tr>
         </tbody>
     </table>
     <a href="addPatron">Add Patron</a>

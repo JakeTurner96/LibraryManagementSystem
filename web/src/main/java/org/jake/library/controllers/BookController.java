@@ -4,7 +4,6 @@ import org.jake.library.entities.*;
 import org.jake.library.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -48,7 +47,7 @@ public class BookController {
     @RequestMapping("/saveBook")
     public String saveBook(Book book) {
         bookService.addBook(book);
-        return "redirect:/bookSearch";
+        return "redirect:/searchBook?keyword=" + book.getName();
     }
 
 //    @GetMapping("/manageBooks")
@@ -61,7 +60,7 @@ public class BookController {
     @RequestMapping("/deleteBook/{id}")
     public String deleteBook(@PathVariable(name = "id") int id) {
         bookService.removeBook(id);
-        return "redirect:/bookSearch";
+        return "redirect:/searchBook?keyword=";
     }
 
     @RequestMapping("/editBook/{id}")
@@ -88,9 +87,10 @@ public class BookController {
         updatedBook.setAvailable(book.isAvailable());
         updatedBook.setAuthor(book.getAuthor());
         updatedBook.setPublisher(book.getPublisher());
+        updatedBook.setCategory(book.getCategory());
 
         bookService.addBook(updatedBook);
 
-        return "redirect:/bookSearch";
+        return "redirect:/searchBook?keyword=" + book.getName();
     }
 }

@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link th:href="@{/main.css}" rel="stylesheet">
+    <script type="text/javascript" th:src="@{/js.js}"></script>
+
 </head>
 <body style="font-family:verdana">
 
@@ -28,6 +30,9 @@
 
         <label for="password">Password:</label>
         <input id="password" type="password" name="password" placeholder="Password" required="required">
+
+        <!--        <label for="confirmPassword">Confirm Password:</label>-->
+        <!--        <input id="confirmPassword" type="password" name="confirmPassword" placeholder="Password" required="required">-->
 
         <label for="patron">Patron Type:</label>
         <select id="patron" name="patronType" required="required">

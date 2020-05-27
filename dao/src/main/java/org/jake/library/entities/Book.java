@@ -23,6 +23,21 @@ public class Book {
     private int pages;
     @NonNull
     private int copies;
+
+    public enum Category {
+        Fantasy,
+        SciFi,
+        Mystery,
+        Romance,
+        Horror,
+        Thriller,
+        Other
+    }
+
+    @NonNull
+    @Enumerated(EnumType.STRING)
+    private Category category;
+
     @NonNull
     private boolean available;
     @ManyToOne

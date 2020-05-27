@@ -1,6 +1,5 @@
 package org.jake.library.repositories;
 
-import org.jake.library.entities.Book;
 import org.jake.library.entities.Patron;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
