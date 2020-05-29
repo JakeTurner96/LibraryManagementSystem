@@ -3,11 +3,9 @@ package org.jake.library.controllers;
 import lombok.RequiredArgsConstructor;
 import org.jake.library.entities.BookLoan;
 import org.jake.library.entities.Patron;
-import org.jake.library.repositories.BookLoanRepository;
 import org.jake.library.services.BookLoanService;
 import org.jake.library.services.BookService;
 import org.jake.library.services.PatronService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -24,16 +22,10 @@ public class PatronController {
     private final BookService bookService;
 
     @GetMapping("/managePatrons")
-    public String patronServices(Model model) {
+    public String managePatrons(Model model) {
+        List<Patron> patronList = patronService.getPatronList();
+        model.addAttribute("patronList", patronList);
         return "patrons/managePatrons";
-    }
-
-    @RequestMapping("/patronSearch")
-    public ModelAndView searchPatron(@RequestParam String keyword) {
-        List<Patron> patronList = patronService.searchPatron(keyword);
-        ModelAndView modelAndView = new ModelAndView("patrons/managePatrons");
-        modelAndView.addObject("patronList", patronList);
-        return modelAndView;
     }
 
     @GetMapping("/addPatron")

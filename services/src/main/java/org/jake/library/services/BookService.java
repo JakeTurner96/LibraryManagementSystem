@@ -29,10 +29,6 @@ public class BookService {
         bookRepository.deleteById(id);
     }
 
-    public List<Book> searchBook(String keyword) {
-        return bookRepository.bookSearch(keyword);
-    }
-
     public void decrementCopies(Book book) {
         if (book.getCopies() == 1) {
             book.setCopies(book.getCopies() - 1);

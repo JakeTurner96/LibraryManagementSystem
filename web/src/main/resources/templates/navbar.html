@@ -28,14 +28,7 @@
     </div>
 
     <div class="navright" sec:authorize="isAuthenticated()">
-        <div class="dropdown">
-            <a class="dropbtn" sec:authentication="name"></a>
-
-            <div class="dropdown-content">
-                <a href="#">My Account</a>
-                <a href="logout">Logout</a>
-            </div>
-        </div>
+        <a href="logout" sec:authentication="name"></a>
     </div>
 </div>
 </body>

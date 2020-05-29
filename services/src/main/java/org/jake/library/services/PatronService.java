@@ -28,8 +28,4 @@ public class PatronService {
     public void removePatron(int id) {
         patronRepository.deleteById(id);
     }
-
-    public List<Patron> searchPatron(String keyword) {
-        return patronRepository.patronSearch(keyword);
-    }
 }

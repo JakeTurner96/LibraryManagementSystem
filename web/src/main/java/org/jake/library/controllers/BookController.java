@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.jake.library.entities.*;
 import org.jake.library.services.*;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -18,21 +19,14 @@ public class BookController {
     private final PublisherService publisherService;
 
     @GetMapping("/bookSearch")
-    public String bookSearch() {
+    public String bookSearch(Model model) {
+        List<Book> bookList = bookService.getBookList();
+        model.addAttribute("bookList", bookList);
         return "books/bookSearch";
-    }
-
-    @RequestMapping("/searchBook")
-    public ModelAndView search(@RequestParam String keyword) {
-        List<Book> bookList = bookService.searchBook(keyword);
-        ModelAndView modelAndView = new ModelAndView("books/bookSearch");
-        modelAndView.addObject("bookList", bookList);
-        return modelAndView;
     }
 
     @GetMapping("/addBook")
     public ModelAndView addBook() {
-
         List<Author> authorList = authorService.getAuthorList();
         List<Publisher> publisherList = publisherService.getPublisherList();
 

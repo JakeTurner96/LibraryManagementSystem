@@ -39,7 +39,6 @@ public class BookLoanController {
 
     @RequestMapping("/patronBookLoans")
     public String patronBookLoans(Model model) {
-
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Optional<Patron> p = patronRepository.findByEmail(authentication.getName());
 
