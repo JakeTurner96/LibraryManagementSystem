@@ -1,16 +1,15 @@
 package org.jake.library.services;
 
-
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Component;
 
 @Component
+@RequiredArgsConstructor
 public class EmailService {
 
-    @Autowired
-    public JavaMailSender javaMailSender;
+    private final JavaMailSender javaMailSender;
 
     public void sendSimpleEmail(String recipient, String subject, String text) {
 

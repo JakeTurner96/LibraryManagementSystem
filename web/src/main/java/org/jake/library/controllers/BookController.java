@@ -1,8 +1,8 @@
 package org.jake.library.controllers;
 
+import lombok.RequiredArgsConstructor;
 import org.jake.library.entities.*;
 import org.jake.library.services.*;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -10,14 +10,12 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 
 @Controller
+@RequiredArgsConstructor
 public class BookController {
 
-    @Autowired
-    BookService bookService;
-    @Autowired
-    AuthorService authorService;
-    @Autowired
-    PublisherService publisherService;
+    private final BookService bookService;
+    private final AuthorService authorService;
+    private final PublisherService publisherService;
 
     @GetMapping("/bookSearch")
     public String bookSearch() {
@@ -49,13 +47,6 @@ public class BookController {
         bookService.addBook(book);
         return "redirect:/searchBook?keyword=" + book.getName();
     }
-
-//    @GetMapping("/manageBooks")
-//    public String manageBooks(Model model) {
-//        List<Book> bookList = bookService.getBookList();
-//        model.addAttribute("bookList", bookList);
-//        return "books/manageBooks";
-//    }
 
     @RequestMapping("/deleteBook/{id}")
     public String deleteBook(@PathVariable(name = "id") int id) {

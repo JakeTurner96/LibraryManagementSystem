@@ -24,7 +24,7 @@ public class Book {
     @NonNull
     private int copies;
 
-    public enum Category {
+    private enum Category {
         Fantasy,
         SciFi,
         Mystery,

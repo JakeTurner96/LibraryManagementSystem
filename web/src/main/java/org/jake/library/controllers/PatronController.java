@@ -5,6 +5,7 @@ import org.jake.library.entities.BookLoan;
 import org.jake.library.entities.Patron;
 import org.jake.library.repositories.BookLoanRepository;
 import org.jake.library.services.BookLoanService;
+import org.jake.library.services.BookService;
 import org.jake.library.services.PatronService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,17 +19,12 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PatronController {
 
-    @Autowired
-    private BookLoanRepository bookLoanRepository;
-    @Autowired
-    private BookLoanService bookLoanService;
-    @Autowired
-    private PatronService patronService;
+    private final BookLoanService bookLoanService;
+    private final PatronService patronService;
+    private final BookService bookService;
 
     @GetMapping("/managePatrons")
     public String patronServices(Model model) {
-//        List<Patron> patronList = patronService.getPatronList();
-//        model.addAttribute("patrons", patronList);
         return "patrons/managePatrons";
     }
 
@@ -55,10 +51,10 @@ public class PatronController {
     public String deletePatron(@PathVariable(name = "id") int id) {
 
         List<BookLoan> bookLoanList = bookLoanService.getPatronBookLoans(id);
-
-        for (BookLoan bookLoan : bookLoanList) {
+        bookLoanList.forEach(bookLoan -> {
+            bookService.incrementCopies(bookLoan.getBook());
             bookLoanService.removeBookLoan(bookLoan.getId());
-        }
+        });
         patronService.removePatron(id);
 
         return "redirect:/patronSearch?keyword=";

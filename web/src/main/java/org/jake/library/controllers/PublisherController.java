@@ -1,8 +1,8 @@
 package org.jake.library.controllers;
 
+import lombok.RequiredArgsConstructor;
 import org.jake.library.entities.Publisher;
 import org.jake.library.services.PublisherService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,10 +14,10 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 
 @Controller
+@RequiredArgsConstructor
 public class PublisherController {
 
-    @Autowired
-    PublisherService publisherService;
+    private final PublisherService publisherService;
 
     @GetMapping("/managePublishers")
     public String managePublishers(Model model) {

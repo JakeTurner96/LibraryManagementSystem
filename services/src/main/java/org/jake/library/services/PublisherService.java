@@ -28,8 +28,4 @@ public class PublisherService {
     public List<Publisher> getPublisherList() {
         return publisherRepository.findAll();
     }
-
-    public boolean publisherExists(Publisher publisher) {
-        return publisherRepository.existsById(publisher.getId());
-    }
 }

@@ -48,11 +48,11 @@
             <td th:text="${book.copies}"></td>
 
             <span th:if="${book.isAvailable()}">
-                <td style="color:green;" th:text="${book.available}"></td>
+                <td style="color:green;">Yes</td>
             </span>
 
             <span th:if="${!book.isAvailable()}">
-                <td style="color:red;" th:text="${book.available}"></td>
+                <td style="color:red;">No</td>
             </span>
             <td>
                <span th:if="${book.isAvailable()}">

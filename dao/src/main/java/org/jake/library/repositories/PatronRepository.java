@@ -14,5 +14,4 @@ public interface PatronRepository extends JpaRepository<Patron, Integer> {
 
     @Query(value = "SELECT * FROM PATRON WHERE NAME LIKE '%' || :keyword || '%'", nativeQuery = true)
     List<Patron> patronSearch(@Param("keyword") String keyword);
-
 }

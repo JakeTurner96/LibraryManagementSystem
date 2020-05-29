@@ -28,8 +28,4 @@ public class AuthorService {
     public void removeAuthor(int id) {
         authorRepository.deleteById(id);
     }
-
-    public boolean authorExists(Author author) {
-        return authorRepository.existsById(author.getId());
-    }
 }

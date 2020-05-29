@@ -29,12 +29,7 @@ public class PatronService {
         patronRepository.deleteById(id);
     }
 
-    public boolean patronExists(Patron patron) {
-        return patronRepository.existsById(patron.getId());
-    }
-
     public List<Patron> searchPatron(String keyword) {
         return patronRepository.patronSearch(keyword);
     }
-
 }
