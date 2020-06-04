@@ -39,13 +39,13 @@ public class BookController {
     @RequestMapping("/saveBook")
     public String saveBook(Book book) {
         bookService.addBook(book);
-        return "redirect:/searchBook?keyword=" + book.getName();
+        return "redirect:/addBook";
     }
 
     @RequestMapping("/deleteBook/{id}")
     public String deleteBook(@PathVariable(name = "id") int id) {
         bookService.removeBook(id);
-        return "redirect:/searchBook?keyword=";
+        return "redirect:/bookSearch";
     }
 
     @RequestMapping("/editBook/{id}")
@@ -76,6 +76,6 @@ public class BookController {
 
         bookService.addBook(updatedBook);
 
-        return "redirect:/searchBook?keyword=" + book.getName();
+        return "redirect:/bookSearch";
     }
 }

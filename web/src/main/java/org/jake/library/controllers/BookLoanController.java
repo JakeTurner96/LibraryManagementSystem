@@ -63,28 +63,34 @@ public class BookLoanController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Optional<Patron> patron = patronRepository.findByEmail(authentication.getName());
 
-        BookLoan bookLoan = new BookLoan();
+        if(bookService.getBook(id).isAvailable()){
 
-        bookLoan.setPatron(patron.get());
-        bookLoan.setBook(bookService.getBook(id));
-        bookLoan.setDateOut(LocalDate.now());
-        bookLoan.setDateDue(LocalDate.now().plusDays(7));
+            BookLoan bookLoan = new BookLoan();
 
-        bookLoanService.addBookLoan(bookLoan);
-        bookService.decrementCopies(bookLoan.getBook());
+            bookLoan.setPatron(patron.get());
+            bookLoan.setBook(bookService.getBook(id));
+            bookLoan.setDateOut(LocalDate.now());
+            bookLoan.setDateDue(LocalDate.now().plusDays(7));
 
-        return "redirect:/patronBookLoans";
+            bookLoanService.addBookLoan(bookLoan);
+            bookService.decrementCopies(bookLoan.getBook());
+
+            return "redirect:/bookSearch";
+        }else {
+            return "redirect:/error";
+        }
     }
 
     @RequestMapping("/loanBook")
     public String loanBook(@ModelAttribute("bookLoan") BookLoan bookLoan) {
+
         bookLoan.setDateOut(LocalDate.now());
         bookLoan.setDateDue(LocalDate.now().plusDays(7));
 
         bookLoanService.addBookLoan(bookLoan);
         bookService.decrementCopies(bookLoan.getBook());
 
-        return "redirect:/bookLoans";
+        return "redirect:/bookSearch";
     }
 
     @RequestMapping("/returnBook/{id}")

@@ -1,6 +1,7 @@
 package org.jake.library.services;
 
 import lombok.RequiredArgsConstructor;
+import org.jake.exceptions.AuthorNotFoundException;
 import org.jake.library.entities.Author;
 import org.jake.library.repositories.AuthorRepository;
 import org.springframework.stereotype.Service;
@@ -17,15 +18,23 @@ public class AuthorService {
         authorRepository.save(author);
     }
 
-    public Author getAuthor(int id) {
-        return authorRepository.findById(id).orElse(null);
+    public Author getAuthor(int authorId) {
+        if(!authorRepository.existsById(authorId)){
+            throw new AuthorNotFoundException("An author with id " + authorId + " could not be found");
+        } else {
+            return authorRepository.findById(authorId).get();
+        }
     }
 
     public List<Author> getAuthorList() {
         return authorRepository.findAll();
     }
 
-    public void removeAuthor(int id) {
-        authorRepository.deleteById(id);
+    public void removeAuthor(int authorId) {
+        if(!authorRepository.existsById(authorId)){
+            throw new AuthorNotFoundException("An author with id " + authorId + " could not be found");
+        }else{
+            authorRepository.deleteById(authorId);
+        }
     }
 }

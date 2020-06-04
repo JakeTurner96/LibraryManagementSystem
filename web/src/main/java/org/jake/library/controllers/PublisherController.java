@@ -1,6 +1,7 @@
 package org.jake.library.controllers;
 
 import lombok.RequiredArgsConstructor;
+import org.jake.library.entities.Author;
 import org.jake.library.entities.Publisher;
 import org.jake.library.services.PublisherService;
 import org.springframework.stereotype.Controller;
@@ -34,8 +35,15 @@ public class PublisherController {
     @RequestMapping("/savePublisher")
     public String savePublisher(Publisher publisher) {
         publisherService.addPublisher(publisher);
-        return "redirect:/managePublishers";
+        return "redirect:/addPublisher";
     }
+
+    @RequestMapping("/modalSavePublisher")
+    public String modalSavePublisher(Publisher publisher){
+        publisherService.addPublisher(publisher);
+        return "redirect:/addBook";
+    }
+
 
     @RequestMapping("/deletePublisher/{id}")
     public String deletePublisher(@PathVariable(name = "id") int id) {

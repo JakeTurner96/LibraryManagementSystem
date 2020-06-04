@@ -8,9 +8,11 @@ import org.jake.library.services.BookService;
 import org.jake.library.services.PatronService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -34,9 +36,9 @@ public class PatronController {
     }
 
     @RequestMapping("/savePatron")
-    public String savePatron(@ModelAttribute("patron") Patron patron) {
+    public String savePatron(@Valid @ModelAttribute("patron") Patron patron) {
         patronService.addPatron(patron);
-        return "redirect:/patronSearch?keyword=" + patron.getName();
+        return "patrons/addPatron";
     }
 
     @RequestMapping("/deletePatron/{id}")
@@ -49,7 +51,7 @@ public class PatronController {
         });
         patronService.removePatron(id);
 
-        return "redirect:/patronSearch?keyword=";
+        return "redirect:/managePatrons";
     }
 
     @RequestMapping("/editPatron/{id}")
@@ -71,6 +73,6 @@ public class PatronController {
         updatedPatron.setPatronType(patron.getPatronType());
 
         patronService.addPatron(updatedPatron);
-        return "redirect:/patronSearch?keyword=" + updatedPatron.getName();
+        return "redirect:/managePatrons";
     }
 }

@@ -1,8 +1,11 @@
 package org.jake.library.services;
 
 import lombok.RequiredArgsConstructor;
+import org.jake.exceptions.BookLoanNotFoundException;
+import org.jake.exceptions.PatronNotFoundException;
 import org.jake.library.entities.BookLoan;
 import org.jake.library.repositories.BookLoanRepository;
+import org.jake.library.repositories.PatronRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,17 +15,26 @@ import java.util.List;
 public class BookLoanService {
 
     private final BookLoanRepository bookLoanRepository;
+    private final PatronRepository patronRepository;
 
     public void addBookLoan(BookLoan bookLoan) {
         bookLoanRepository.save(bookLoan);
     }
 
-    public void removeBookLoan(int id) {
-        bookLoanRepository.deleteById(id);
+    public void removeBookLoan(int loanId) {
+        if(!bookLoanRepository.existsById(loanId)){
+            throw new BookLoanNotFoundException("A book loan with id " + loanId + " could not be found");
+        }else{
+            bookLoanRepository.deleteById(loanId);
+        }
     }
 
-    public BookLoan getBookLoan(int id) {
-        return bookLoanRepository.findById(id).orElse(null);
+    public BookLoan getBookLoan(int loanId) {
+        if(!bookLoanRepository.existsById(loanId)){
+            throw new BookLoanNotFoundException("A book loan with id " + loanId + " could not be found");
+        }else{
+            return bookLoanRepository.findById(loanId).get();
+        }
     }
 
     public List<BookLoan> getBookLoanList() {
@@ -30,11 +42,19 @@ public class BookLoanService {
     }
 
     public List<BookLoan> getPatronBookLoans(int patronID) {
-        return bookLoanRepository.getPatronBookLoans(patronID);
+        if(!patronRepository.existsById(patronID)){
+            throw new PatronNotFoundException("A patron with ID " + patronID + " could not be found");
+        }else{
+            return bookLoanRepository.getPatronBookLoans(patronID);
+        }
     }
 
     public List<BookLoan> getPatronOverdueBooks(int patronID) {
-        return bookLoanRepository.getPatronOverdueBooks(patronID);
+        if(!patronRepository.existsById(patronID)){
+            throw new PatronNotFoundException("A patron with ID " + patronID + " could not be found");
+        }else{
+            return bookLoanRepository.getPatronOverdueBooks(patronID);
+        }
     }
 
     public List<Integer> getOverduePatrons() {

@@ -20,4 +20,10 @@ public class MainController {
     public String logout() {
         return "/logout";
     }
+
+    @GetMapping("/loanSuccess")
+    public String loanSuccess() {
+        return "/loanSuccess";
+    }
+
 }

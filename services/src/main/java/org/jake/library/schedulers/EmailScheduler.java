@@ -28,21 +28,19 @@ public class EmailScheduler {
 
     @Scheduled(cron = "0 0 9 * * *")
     public void overdueBookEmail() {
+        bookLoanService.getOverduePatrons().forEach(integer -> {
+            Patron p = patronService.getPatron(integer);
+            List<BookLoan> bookLoanList = bookLoanService.getPatronOverdueBooks(integer);
 
-        for (int i : bookLoanService.getOverduePatrons()) {
-        Patron p = patronService.getPatron(i);
-        List<BookLoan> bookLoanList = bookLoanService.getPatronOverdueBooks(i);
-
-        emailService.sendSimpleEmail(p.getEmail(), "Overdue books", "Dear " + p.getName() +
-                ",\n\nYou have " + bookLoanList.size() + " overdue books:\n" + overdueBookNames(bookLoanList)
-                + "\nPlease return them ASAP to avoid further fines.\n\nThis is an automated message, do not reply directly to this email.");
-        log.info("Email sent to " + p.getEmail() + " at " + dateFormat.format(new Date()));
-        }
+            emailService.sendSimpleEmail(p.getEmail(), "Overdue books", "Dear " + p.getName() +
+                    ",\n\nYou have " + bookLoanList.size() + " overdue books:\n" + overdueBookNames(bookLoanList)
+                    + "\nPlease return them ASAP to avoid further fines.\n\nThis is an automated message, do not reply directly to this email.");
+            log.info("Email sent to " + p.getEmail() + " at " + dateFormat.format(new Date()));
+        });
     }
 
     public String overdueBookNames(List<BookLoan> bookLoanList) {
         StringBuilder stringBuilder = new StringBuilder("\n");
-
         bookLoanList.forEach((bookLoan) -> stringBuilder.append(bookLoan.getBook().getName() + "\n"));
 
         return stringBuilder.toString();
